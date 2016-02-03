@@ -1,0 +1,14 @@
+
+<h1>Add user</h1>
+
+<form>
+    <div class="form-group">
+        <label>Username</label>    
+        <input class="form-control" ng-model="user.name"></input>
+    </div>
+    <div class="form-group">
+        <label>Role</label>
+        <textarea class="form-control" ng-model="user.role"></textarea>
+    </div>
+    <input type="button" class="btn btn-primary" value="Save" ng-click="save()"></input>  
+</form>

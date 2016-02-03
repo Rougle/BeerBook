@@ -1,0 +1,14 @@
+<h1>Home</h1>
+
+<ul>
+    <li ng-repeat='user in users'>
+      <a href="/#/user/edit/{{user._id}}">
+        {{user.name}}
+      </a>
+      <a href="/#/user/delete/{{user._id}}">
+        Delete
+      </a>
+    </li>
+</ul>
+
+<a href="/#/user/add">Add user</a>
