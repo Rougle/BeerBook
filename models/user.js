@@ -3,9 +3,11 @@ var Schema = mongoose.Schema;
 mongoose.connect('mongodb://localhost:27017/GuitarShop');
 
 var userSchema = new Schema({
-  name: String,
+  username: String,
+  password: String,
   role: String
 });
+
 
 var User = mongoose.model('User', userSchema);
 

@@ -4,7 +4,8 @@ var router = express.Router();
 // database
 var User = require('../models/user');
 
-
+// Passport
+var passport = require('passport');
 
 /* GET users listing. */
 router.get('/', function(req, res) {
@@ -19,7 +20,8 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res) {
 
   var newUser = new User({
-    name: req.body.name,
+    username: req.body.username,
+    password: req.body.password,
     role: req.body.role
   });
 
@@ -44,7 +46,8 @@ router.put('/:id', function(req, res){
   User.findById(req.params.id, function(err, user){
     if(err) throw err;
     
-    user.name = req.body.name;
+    user.username = req.body.username;
+    user.password = req.body.password;
     user.role = req.body.role;
     
     user.save(function(err, user) {
@@ -69,4 +72,37 @@ router.delete('/:id', function(req, res){
   });
 });
 
+//=========AUTHENTICATION========
+
+// test if logged in
+router.get('/loggedin', function(req, res) {
+  res.send(req.isAuthenticated() ? req.user : '0');
+});
+
+// login route
+
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return res.status(500).json({err: err});
+    }
+    if (!user) {
+      return res.status(401).json({err: info});
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return res.status(500).json({err: 'Could not log in user'});
+      }
+      res.status(200).json({status: 'Login successful!'});
+    });
+  })(req, res, next);
+});
+
+// logout route
+router.post('/logout', function(req, res){
+  req.logOut();
+  res.send(200);
+});
+
 module.exports = router;
+

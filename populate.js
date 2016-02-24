@@ -1,4 +1,4 @@
 db = connect("localhost:27017/guitarshop") 
-user = { name : "Zaky", role : "user" }
+user = { username : "Zaky", password : "secret" role : "user" }
 
 db.users.insert( user )
