@@ -2,11 +2,11 @@ angular.module('GuitarShop').controller('HomeCtrl', ['$scope', '$resource',
   function($scope, $resource){
     var Users = $resource('/api/users');
     Users.query(function(users){
-      $scope.users = users
+      $scope.users = users;
     })
 }]);
 
-angular.module('GuitarShop').controller('AddUserCtrl', ['$scope', '$resource', '$location',
+angular.module('GuitarShop').controller('RegisterUserCtrl', ['$scope', '$resource', '$location',
   function($scope, $resource, $location){
     $scope.save = function(){
       var Users = $resource('/api/users');
@@ -100,8 +100,8 @@ angular.module('GuitarShop').controller('LogoutCtrl',
     };
 
 }]);
-
-angular.module('GuitarShop').controller('registerCtrl',
+/*
+angular.module('GuitarShop').controller('registerUserCtrl',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 
@@ -114,7 +114,7 @@ angular.module('GuitarShop').controller('registerCtrl',
       $scope.disabled = true;
 
       // call register from service
-      AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+      AuthService.register($scope.user.username, $scope.user.password, $scope.user.role)
         // handle success
         .then(function () {
           $location.path('/login');
@@ -132,3 +132,4 @@ angular.module('GuitarShop').controller('registerCtrl',
     };
 
 }]);
+*/

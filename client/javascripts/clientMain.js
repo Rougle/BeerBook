@@ -3,23 +3,24 @@ var app = angular.module('GuitarShop', ['ngResource', 'ngRoute']);
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/', {
-      templateUrl: 'partials/home.html',
+      templateUrl: 'views/partials/home.html',
       controller: 'HomeCtrl'
     })
-    .when('/user/add', {
-      templateUrl: 'partials/user-form.html',
-      controller: 'AddUserCtrl'
+    .when('/user/register', {
+      templateUrl: 'views/partials/user-form.html',
+      controller: 'RegisterUserCtrl'
     })
     .when('/user/edit/:id', {
-      templateUrl: 'partials/user-form.html',
+      templateUrl: 'views/partials/user-form.html',
       controller: 'EditUserCtrl'
     })
     .when('/user/delete/:id', {
-      templateUrl: 'partials/user-delete.html',
-      controller: 'DeleteUserCtrl'
+      templateUrl: 'views/partials/user-delete.html',
+      controller: 'DeleteUserCtrl',
+      access: {restricted: true}
     })
     .when('/user/login', {
-      templateUrl: 'partials/login-form.html',
+      templateUrl: 'views/partials/login-form.html',
       controller: 'LoginCtrl'
     })
     .when('/user/logout', {
@@ -31,6 +32,7 @@ app.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
+// THIS HAS ERRORS
 app.run(function ($rootScope, $location, $route, AuthService) {
   $rootScope.$on('$routeChangeStart', function (event, next, current) {
     if (next.access.restricted && AuthService.isLoggedIn() === false) {

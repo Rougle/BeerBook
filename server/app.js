@@ -18,7 +18,7 @@ var LocalStrategy = require('passport-local').Strategy;
 // Define passportJS strategy
 passport.use(new LocalStrategy(
   function(username, password, done){
-    if (username === "admin" && password === "admin") //Just a test
+    if (username === "admin" && password === "admin")
       return done(null,{username: "admin"});
 
     return done(null, false, {message: 'Login failed.'});
@@ -46,10 +46,10 @@ var auth = function(req, res, next){
 
 var app = express();
 
-// All Enviironments //
+// All Environments //
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../client'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -58,7 +58,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // Session
 app.use(session({ 
@@ -75,10 +75,7 @@ app.use(passport.session());    // Add passport initialization
 app.use('/', routes);
 app.use('/api/users', users);
 
-//========================================================
 
-
-//==================================================================
 //==================================================================
 
 

@@ -11,7 +11,7 @@ angular.module('GuitarShop').factory('AuthService',
       getUserStatus: getUserStatus,
       login: login,
       logout: logout,
-      register: register
+      //register: register
     });
 
     function isLoggedIn() {
@@ -76,7 +76,7 @@ angular.module('GuitarShop').factory('AuthService',
       return deferred.promise;
 
     }
-
+/*
     function register(username, password) {
 
       // create a new instance of deferred
@@ -101,5 +101,5 @@ angular.module('GuitarShop').factory('AuthService',
       return deferred.promise;
 
     }
-
+*/
 }]);
