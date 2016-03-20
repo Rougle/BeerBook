@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 // Routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var authRoute = require('./routes/auth');
 
 
 //===========Passport==============================================
@@ -34,13 +35,6 @@ passport.deserializeUser(function(user, done){
   done(null, user);
 });
 
-// Middleware function to be used with routes
-var auth = function(req, res, next){
-  if(!req.isAuthenticated())
-    res.send(401);
-  else
-    next();
-};
 
 //================================================================
 
@@ -74,6 +68,7 @@ app.use(passport.session());    // Add passport initialization
 // Routes
 app.use('/', routes);
 app.use('/api/users', users);
+app.use('/api/auth', authRoute);
 
 
 //==================================================================

@@ -55,8 +55,6 @@ angular.module('GuitarShop').controller('LoginCtrl',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 
-    console.log(AuthService.getUserStatus());
-
     $scope.login = function () {
 
       // initial values
@@ -78,9 +76,7 @@ angular.module('GuitarShop').controller('LoginCtrl',
           $scope.disabled = false;
           $scope.loginForm = {};
         });
-
     };
-
 }]);
 
 angular.module('GuitarShop').controller('LogoutCtrl',
@@ -89,12 +85,9 @@ angular.module('GuitarShop').controller('LogoutCtrl',
 
     $scope.logout = function () {
 
-      console.log(AuthService.getUserStatus());
-
-      // call logout from service
       AuthService.logout()
         .then(function () {
-          $location.path('/login');
+          $location.path('/auth/login');
         });
 
     };

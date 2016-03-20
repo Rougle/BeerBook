@@ -72,37 +72,4 @@ router.delete('/:id', function(req, res){
   });
 });
 
-//=========AUTHENTICATION========
-
-// test if logged in
-router.get('/loggedin', function(req, res) {
-  res.send(req.isAuthenticated() ? req.user : '0');
-});
-
-// login route
-
-router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) {
-      return res.status(500).json({err: err});
-    }
-    if (!user) {
-      return res.status(401).json({err: info});
-    }
-    req.logIn(user, function(err) {
-      if (err) {
-        return res.status(500).json({err: 'Could not log in user'});
-      }
-      res.status(200).json({status: 'Login successful!'});
-    });
-  })(req, res, next);
-});
-
-// logout route
-router.post('/logout', function(req, res){
-  req.logOut();
-  res.send(200);
-});
-
 module.exports = router;
-

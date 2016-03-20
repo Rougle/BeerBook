@@ -10,7 +10,7 @@ angular.module('GuitarShop').factory('AuthService',
       isLoggedIn: isLoggedIn,
       getUserStatus: getUserStatus,
       login: login,
-      logout: logout,
+      logout: logout
       //register: register
     });
 
@@ -23,7 +23,19 @@ angular.module('GuitarShop').factory('AuthService',
     }
 
     function getUserStatus() {
-      return user;
+      $http.get('/api/auth/status')
+      // handle success
+      .success(function (data) {
+        if(data.status){
+          user = true;
+        } else {
+          user = false;
+        }
+      })
+      // handle error
+      .error(function (data) {
+        user = false;
+      });
     }
 
     function login(username, password) {
@@ -32,7 +44,7 @@ angular.module('GuitarShop').factory('AuthService',
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/api/users/login', {username: username, password: password})
+      $http.post('/api/auth/login', {username: username, password: password})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){
@@ -60,7 +72,7 @@ angular.module('GuitarShop').factory('AuthService',
       var deferred = $q.defer();
 
       // send a get request to the server
-      $http.get('/user/logout')
+      $http.get('/api/auth/logout')
         // handle success
         .success(function (data) {
           user = false;
@@ -76,14 +88,16 @@ angular.module('GuitarShop').factory('AuthService',
       return deferred.promise;
 
     }
-/*
+
+// Users are currently added elsewhere, rework stuff sometime later.
+/*  
     function register(username, password) {
 
       // create a new instance of deferred
       var deferred = $q.defer();
 
       // send a post request to the server
-      $http.post('/user/add', {username: username, password: password, role: role})
+      $http.post('/api/user/add', {username: username, password: password, role: role})
         // handle success
         .success(function (data, status) {
           if(status === 200 && data.status){

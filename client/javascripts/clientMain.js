@@ -4,26 +4,30 @@ app.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/partials/home.html',
-      controller: 'HomeCtrl'
+      controller: 'HomeCtrl',
+      access: {restricted: false}
     })
     .when('/user/register', {
       templateUrl: 'views/partials/user-form.html',
-      controller: 'RegisterUserCtrl'
+      controller: 'RegisterUserCtrl',
+      access: {restricted: false}
     })
     .when('/user/edit/:id', {
       templateUrl: 'views/partials/user-form.html',
-      controller: 'EditUserCtrl'
+      controller: 'EditUserCtrl',
+      access: {restricted: true}
     })
     .when('/user/delete/:id', {
       templateUrl: 'views/partials/user-delete.html',
       controller: 'DeleteUserCtrl',
       access: {restricted: true}
     })
-    .when('/user/login', {
+    .when('/auth/login', {
       templateUrl: 'views/partials/login-form.html',
-      controller: 'LoginCtrl'
+      controller: 'LoginCtrl',
+      access: {restricted: false}
     })
-    .when('/user/logout', {
+    .when('/auth/logout', {
       controller: 'LogoutCtrl',
       access: {restricted: true}
     })
@@ -32,11 +36,13 @@ app.config(['$routeProvider', function($routeProvider){
     });
 }]);
 
-// THIS HAS ERRORS
 app.run(function ($rootScope, $location, $route, AuthService) {
-  $rootScope.$on('$routeChangeStart', function (event, next, current) {
-    if (next.access.restricted && AuthService.isLoggedIn() === false) {
-      $location.path('/login');
-    }
+  $rootScope.$on('$routeChangeStart',
+    function (event, next, current) {
+      AuthService.getUserStatus();
+      if (next.access.restricted && !AuthService.isLoggedIn()) {
+        $location.path('/auth/login');
+        $route.reload();
+      }
   });
 });
