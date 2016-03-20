@@ -16,23 +16,33 @@ var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+var User = require('./models/user');
+
 // Define passportJS strategy
 passport.use(new LocalStrategy(
-  function(username, password, done){
-    if (username === "admin" && password === "admin")
-      return done(null,{username: "admin"});
-
-    return done(null, false, {message: 'Login failed.'});
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (user.password != password) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
   }
 ));
 
 // Serialized and deserialized methods when got from session
 passport.serializeUser(function(user, done){
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done){
-  done(null, user);
+passport.deserializeUser(function(id, done){
+  User.findById(id, function(err, user){
+    done(err, user);
+  });
 });
 
 

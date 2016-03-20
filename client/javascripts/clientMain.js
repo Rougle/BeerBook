@@ -28,8 +28,9 @@ app.config(['$routeProvider', function($routeProvider){
       access: {restricted: false}
     })
     .when('/auth/logout', {
+      template: '<h1>Angular forced me to show you something ;_;</h1>',
       controller: 'LogoutCtrl',
-      access: {restricted: true}
+      access: {restricted: false}
     })
     .otherwise({
       redirectTo: '/'

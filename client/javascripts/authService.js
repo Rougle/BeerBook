@@ -83,7 +83,7 @@ angular.module('GuitarShop').factory('AuthService',
           user = false;
           deferred.reject();
         });
-
+        console.log("logout at authService");
       // return promise object
       return deferred.promise;
 
