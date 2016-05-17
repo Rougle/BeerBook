@@ -11,5 +11,31 @@ html(ng-app='GuitarShop')
     script(src='/javascripts/Controllers/usersCtrl.js')
     script(src='/javascripts/Controllers/authCtrl.js')
     script(src='/javascripts/authService.js')
+  
+
   body
-    block content
+
+    .navbar.navbar-inverse.navbar-static-top(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#/') BeerBook
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a(href='#/') Home
+            if user
+              li
+                a(href='#/auth/logout/') Logout
+            else
+              li
+                a(href='#/auth/login/') Login
+              li
+                a(href='#/user/register/') Signup
+
+    .container
+      block content

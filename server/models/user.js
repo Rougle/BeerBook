@@ -1,13 +1,56 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost:27017/GuitarShop');
+mongoose.connect('mongodb://localhost:27017/BeerBook');
 
 var userSchema = new Schema({
-  username: String,
-  password: String,
-  role: String
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  role: {
+    type: String,
+    required: true,
+    unique: false
+  }
 });
 
+userSchema.pre('save', function(next){
+  var user = this;
+  var SALT_FACTOR = 5;
+
+  if(!user.isModified('password'))
+    return next();
+
+  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+    
+    if(err) 
+      return next(err);
+    
+    else
+      bcrypt.hash(user.password, salt, null, function(err, hash) {
+      if (err)
+        return next(err);
+
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+userSchema.methods.comparePassword = function(candidatePassword, cb){
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
+    if (err)
+      return cb(err);
+
+    cb(null, isMatch);
+  });
+};
 
 var User = mongoose.model('User', userSchema);
 

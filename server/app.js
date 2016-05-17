@@ -15,6 +15,7 @@ var authRoute = require('./routes/auth');
 var session = require('express-session');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcrypt-nodejs');
 
 var User = require('./models/user');
 
@@ -22,17 +23,23 @@ var User = require('./models/user');
 passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
+      if (err)
+        return done(err);
+      
+      if (!user)
         return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (user.password != password) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+
+      user.comparePassword(password, function(err, isMatch){
+        console.log(password);
+        if(isMatch)
+          return done(null, user);
+        else
+          return done(null, false, { message: 'Incorrect password.' });
+      });
     });
   }
 ));
+
 
 // Serialized and deserialized methods when got from session
 passport.serializeUser(function(user, done){
