@@ -1,0 +1,11 @@
+
+h1 Login user
+.alert.alert-danger(ng-show='error') {{errorMessage}}
+form
+  .form-group
+    label Username
+    input.form-control(ng-model='user.username')
+  .form-group
+    label Password
+    textarea.form-control(ng-model='user.password')
+    input.btn.btn-primary(type='button', value='Login', ng-click='login()')
