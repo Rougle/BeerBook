@@ -4,11 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 // Routes
+var authRoute = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var authRoute = require('./routes/auth');
+var beers = require('./routes/beers');
+
 
 
 //===========Passport==============================================
@@ -72,7 +75,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Session
-app.use(session({ 
+app.use(session({
   secret: 'securedsession',
   resave: false,
   saveUninitialized: true 
@@ -84,10 +87,11 @@ app.use(passport.session());    // Add passport initialization
 
 // Routes
 app.use('/', routes);
-app.use('/api/users', users);
 app.use('/api/auth', authRoute);
+app.use('/api/users', users);
+app.use('/api/beers', beers);
 
-
+mongoose.connect('mongodb://localhost:27017/BeerBook');
 //==================================================================
 
 

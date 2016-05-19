@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost:27017/BeerBook');
 
 var userSchema = new Schema({
   username: {

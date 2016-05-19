@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-// database
 var User = require('../models/user');
-
-// Passport
 var passport = require('passport');
 
 /* GET users listing. */

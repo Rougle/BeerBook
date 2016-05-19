@@ -1,5 +1,5 @@
 
-angular.module('GuitarShop').controller('LoginCtrl',
+angular.module('BeerBook').controller('LoginCtrl',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 
@@ -27,7 +27,7 @@ angular.module('GuitarShop').controller('LoginCtrl',
     };
 }]);
 
-angular.module('GuitarShop').controller('LogoutCtrl',
+angular.module('BeerBook').controller('LogoutCtrl',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
     AuthService.logout()
@@ -36,7 +36,7 @@ angular.module('GuitarShop').controller('LogoutCtrl',
       });
 }]);
 /*
-angular.module('GuitarShop').controller('registerUserCtrl',
+angular.module('BeerBook').controller('registerUserCtrl',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 

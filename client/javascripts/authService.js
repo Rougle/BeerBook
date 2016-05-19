@@ -1,4 +1,4 @@
-angular.module('GuitarShop').factory('AuthService',
+angular.module('BeerBook').factory('AuthService',
   ['$q', '$timeout', '$http',
   function ($q, $timeout, $http) {
 

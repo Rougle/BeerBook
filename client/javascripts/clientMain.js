@@ -1,4 +1,4 @@
-var app = angular.module('GuitarShop', ['ngResource', 'ngRoute']);
+var app = angular.module('BeerBook', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
@@ -30,6 +30,21 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/auth/logout', {
       template: '<h1>Angular forced me to show you something ;_;</h1>',
       controller: 'LogoutCtrl',
+      access: {restricted: false}
+    })
+    .when('/beers', {
+      templateUrl: 'views/partials/beers.html',
+      controller: 'ViewBeersCtrl',
+      access: {restricted: false}
+    })
+    .when('/beers/add', {
+      templateUrl: 'views/partials/beer-form.html',
+      controller: 'AddBeerCtrl',
+      access: {restricted: false}
+    })
+    .when('/beers/delete/:id', {
+      templateUrl: 'views/partials/beer-delete.html',
+      controller: 'DeleteBeerCtrl',
       access: {restricted: false}
     })
     .otherwise({

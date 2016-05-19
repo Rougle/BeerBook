@@ -1,4 +1,4 @@
-angular.module('GuitarShop').controller('HomeCtrl', ['$scope', '$resource', 
+angular.module('BeerBook').controller('HomeCtrl', ['$scope', '$resource', 
   function($scope, $resource){
     var Users = $resource('/api/users');
     Users.query(function(users){
@@ -6,7 +6,7 @@ angular.module('GuitarShop').controller('HomeCtrl', ['$scope', '$resource',
     })
 }]);
 
-angular.module('GuitarShop').controller('RegisterUserCtrl', ['$scope', '$resource', '$location',
+angular.module('BeerBook').controller('RegisterUserCtrl', ['$scope', '$resource', '$location',
   function($scope, $resource, $location){
     $scope.save = function(){
       var Users = $resource('/api/users');
@@ -16,7 +16,7 @@ angular.module('GuitarShop').controller('RegisterUserCtrl', ['$scope', '$resourc
     }
 }]);
 
-angular.module('GuitarShop').controller('EditUserCtrl', ['$scope', '$resource', '$location', '$routeParams',
+angular.module('BeerBook').controller('EditUserCtrl', ['$scope', '$resource', '$location', '$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Users = $resource('/api/users/:id', { id: '@_id' }, {
@@ -34,7 +34,7 @@ angular.module('GuitarShop').controller('EditUserCtrl', ['$scope', '$resource', 
     }
 }]);
 
-angular.module('GuitarShop').controller('DeleteUserCtrl', ['$scope', '$resource', '$location','$routeParams',
+angular.module('BeerBook').controller('DeleteUserCtrl', ['$scope', '$resource', '$location','$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Users = $resource('/api/users/:id');
