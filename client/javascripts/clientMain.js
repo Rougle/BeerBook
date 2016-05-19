@@ -15,12 +15,12 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/user/edit/:id', {
       templateUrl: 'views/partials/user/user-form',
       controller: 'EditUserCtrl',
-      access: {restricted: true}
+      access: {restricted: false}
     })
     .when('/user/delete/:id', {
       templateUrl: 'views/partials/user/user-delete',
       controller: 'DeleteUserCtrl',
-      access: {restricted: true}
+      access: {restricted: false}
     })
     .when('/auth/login', {
       templateUrl: 'views/partials/user/user-login',
@@ -45,13 +45,18 @@ app.config(['$routeProvider', function($routeProvider){
     .when('/beers/edit/:id', {
       templateUrl: 'views/partials/beer/beer-form',
       controller: 'EditBeerCtrl',
-      access: {restricted: true}
+      access: {restricted: false}
     })
     .when('/beers/delete/:id', {
       templateUrl: 'views/partials/beer/beer-delete',
       controller: 'DeleteBeerCtrl',
       access: {restricted: false}
     })
+    .when('/beers/:id', {
+      templateUrl: 'views/partials/beer/beer-info',
+      controller: 'ViewBeerCtrl',
+      access: {restricted: false}
+    })    
     .otherwise({
       redirectTo: '/'
     });

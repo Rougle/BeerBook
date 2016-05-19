@@ -34,6 +34,16 @@ angular.module('BeerBook').controller('EditBeerCtrl', ['$scope', '$resource', '$
     }
 }]);
 
+angular.module('BeerBook').controller('ViewBeerCtrl', ['$scope', '$resource', '$location', '$routeParams',
+  function($scope, $resource, $location, $routeParams){
+
+    var Beers = $resource('/api/beers/:id');
+    
+    Beers.get({ id: $routeParams.id }, function(beer){
+      $scope.beer = beer;
+    });
+}]);
+
 angular.module('BeerBook').controller('DeleteBeerCtrl', ['$scope', '$resource', '$location','$routeParams',
   function($scope, $resource, $location, $routeParams){
 

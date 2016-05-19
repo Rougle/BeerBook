@@ -6,4 +6,7 @@ form
   .form-group
     label Type
     textarea.form-control(ng-model='beer.type')
-    input.btn.btn-primary(type='button', value='Save', ng-click='save()')
+  .form-group
+    label Description
+    textarea.form-control(ng-model='beer.description')
+  input.btn.btn-primary(type='button', value='Save', ng-click='save()')

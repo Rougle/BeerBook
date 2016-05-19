@@ -12,6 +12,11 @@ var beerSchema = new Schema({
     type: String,
     required: true,
     unique: false
+  },
+  description: {
+    type: String,
+    required: true,
+    unique: false
   }
 });
 

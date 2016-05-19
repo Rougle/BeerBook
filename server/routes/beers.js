@@ -17,7 +17,8 @@ router.get('/', function(req, res){
 router.post('/', function(req, res){
   var newBeer = new Beer({
     name: req.body.name,
-    type: req.body.type
+    type: req.body.type,
+    description: req.body.description
   });
 
   newBeer.save(function(err, newBeer){
@@ -43,7 +44,8 @@ router.put('/:id', function(req, res){
     
     beer.name = req.body.name;
     beer.type = req.body.type;
-    
+    beer.description = req.body.description;
+
     beer.save(function(err, beer) {
       if (err) throw err;
       res.json(beer);
