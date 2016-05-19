@@ -82,8 +82,8 @@ app.use(session({
 }));
 
 // Passport
-app.use(passport.initialize()); // Add passport initialization
-app.use(passport.session());    // Add passport initialization
+app.use(passport.initialize());
+app.use(passport.session()); 
 
 // Routes
 app.use('/', routes);
@@ -91,7 +91,25 @@ app.use('/api/auth', authRoute);
 app.use('/api/users', users);
 app.use('/api/beers', beers);
 
+//Angular partials are rendered at server. Jade stuff.
+app.get('/views/partials/:name', function (req, res){
+  var name = req.params.name;
+  res.render('views/partials/' + name);
+});
+
+app.get('/views/partials/beer/:name', function (req, res){
+  var name = req.params.name;
+  res.render('views/partials/beer/' + name);
+});
+
+app.get('/views/partials/user/:name', function (req, res){
+  var name = req.params.name;
+  res.render('views/partials/user/' + name);
+});
+
+//Connect to database
 mongoose.connect('mongodb://localhost:27017/BeerBook');
+
 //==================================================================
 
 

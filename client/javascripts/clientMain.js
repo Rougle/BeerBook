@@ -3,27 +3,27 @@ var app = angular.module('BeerBook', ['ngResource', 'ngRoute']);
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/', {
-      templateUrl: 'views/partials/home.html',
+      templateUrl: 'views/partials/home',
       controller: 'HomeCtrl',
       access: {restricted: false}
     })
     .when('/user/register', {
-      templateUrl: 'views/partials/user-form.html',
+      templateUrl: 'views/partials/user/user-form',
       controller: 'RegisterUserCtrl',
       access: {restricted: false}
     })
     .when('/user/edit/:id', {
-      templateUrl: 'views/partials/user-form.html',
+      templateUrl: 'views/partials/user/user-form',
       controller: 'EditUserCtrl',
       access: {restricted: true}
     })
     .when('/user/delete/:id', {
-      templateUrl: 'views/partials/user-delete.html',
+      templateUrl: 'views/partials/user/user-delete',
       controller: 'DeleteUserCtrl',
       access: {restricted: true}
     })
     .when('/auth/login', {
-      templateUrl: 'views/partials/login-form.html',
+      templateUrl: 'views/partials/user/login-form',
       controller: 'LoginCtrl',
       access: {restricted: false}
     })
@@ -33,17 +33,17 @@ app.config(['$routeProvider', function($routeProvider){
       access: {restricted: false}
     })
     .when('/beers', {
-      templateUrl: 'views/partials/beers.html',
+      templateUrl: 'views/partials/beer/beers',
       controller: 'ViewBeersCtrl',
       access: {restricted: false}
     })
     .when('/beers/add', {
-      templateUrl: 'views/partials/beer-form.html',
+      templateUrl: 'views/partials/beer/beer-form',
       controller: 'AddBeerCtrl',
       access: {restricted: false}
     })
     .when('/beers/delete/:id', {
-      templateUrl: 'views/partials/beer-delete.html',
+      templateUrl: 'views/partials/beer/beer-delete',
       controller: 'DeleteBeerCtrl',
       access: {restricted: false}
     })
