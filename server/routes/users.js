@@ -4,7 +4,7 @@ var router = express.Router();
 var User = require('../models/user');
 var passport = require('passport');
 
-/* GET users listing. */
+// Get users
 router.get('/', function(req, res) {
   User.find({}, function(err, users) {
     if (err) throw err;
@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
   });
 });
 
-// POST user
+// Add new user - MOVE TO AUTH
 router.post('/', function(req, res) {
 
   var newUser = new User({
@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
   });
 });
 
-// GET user id
+// Get user by id
 router.get('/:id', function(req, res){
   User.findOne({ _id: req.params.id}, function(err, user){
     if (err) throw err;
@@ -38,7 +38,7 @@ router.get('/:id', function(req, res){
   });
 });
 
-// PUT user id
+// Edit user by id
 router.put('/:id', function(req, res){
   User.findById(req.params.id, function(err, user){
     if(err) throw err;
@@ -56,7 +56,7 @@ router.put('/:id', function(req, res){
 });
 
 
-// DELETE user
+// Delete user by id
 router.delete('/:id', function(req, res){
   
   User.findById(req.params.id, function(err, user){

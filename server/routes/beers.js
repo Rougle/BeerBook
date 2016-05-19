@@ -4,7 +4,7 @@ var router = express.Router();
 var Beer = require('../models/beer');
 var passport = require('passport');
 
-//gets all beers
+// Get all beers
 router.get('/', function(req, res){
   Beer.find({}, function(err, beers) {
     if(err) throw err;
@@ -13,11 +13,11 @@ router.get('/', function(req, res){
   });
 });
 
-//adds beer
+// Add beer
 router.post('/', function(req, res){
   var newBeer = new Beer({
-    name: req.body.beername,
-    type: req.body.beertype
+    name: req.body.name,
+    type: req.body.type
   });
 
   newBeer.save(function(err, newBeer){
@@ -27,7 +27,7 @@ router.post('/', function(req, res){
   });
 });
 
-// GET beer by id
+// Get beer by id
 router.get('/:id', function(req, res){
   Beer.findOne({ _id: req.params.id}, function(err, beer){
     if (err) throw err;
@@ -36,7 +36,23 @@ router.get('/:id', function(req, res){
   });
 });
 
-// DELETE beer
+// Edit beer by id
+router.put('/:id', function(req, res){
+  Beer.findById(req.params.id, function(err, beer){
+    if(err) throw err;
+    
+    beer.name = req.body.name;
+    beer.type = req.body.type;
+    
+    beer.save(function(err, beer) {
+      if (err) throw err;
+      res.json(beer);
+    });
+  
+  });
+});
+
+// Delete beer by id
 router.delete('/:id', function(req, res){
   
   Beer.findById(req.params.id, function(err, beer){

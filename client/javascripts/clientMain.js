@@ -23,7 +23,7 @@ app.config(['$routeProvider', function($routeProvider){
       access: {restricted: true}
     })
     .when('/auth/login', {
-      templateUrl: 'views/partials/user/login-form',
+      templateUrl: 'views/partials/user/user-login',
       controller: 'LoginCtrl',
       access: {restricted: false}
     })
@@ -41,6 +41,11 @@ app.config(['$routeProvider', function($routeProvider){
       templateUrl: 'views/partials/beer/beer-form',
       controller: 'AddBeerCtrl',
       access: {restricted: false}
+    })
+    .when('/beers/edit/:id', {
+      templateUrl: 'views/partials/beer/beer-form',
+      controller: 'EditBeerCtrl',
+      access: {restricted: true}
     })
     .when('/beers/delete/:id', {
       templateUrl: 'views/partials/beer/beer-delete',
