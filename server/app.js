@@ -5,12 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty();
 
 // Routes
 var authRoute = require('./routes/auth');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var beers = require('./routes/beers');
+var images = require('./routes/images');
 
 
 
@@ -74,6 +77,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../client')));
 
+//Some static routes
+app.use('/static', express.static((path.join(__dirname, '../node_modules/ng-file-upload/dist'))));
+app.use('/resources', express.static((path.join(__dirname, '../client/resources'))));
+
 // Session
 app.use(session({
   secret: 'securedsession',
@@ -90,6 +97,7 @@ app.use('/', routes);
 app.use('/api/auth', authRoute);
 app.use('/api/users', users);
 app.use('/api/beers', beers);
+app.use('/api/images', images);
 
 //Angular partials are rendered at server. Jade stuff.
 app.get('/views/partials/:name', function (req, res){

@@ -17,6 +17,11 @@ var beerSchema = new Schema({
     type: String,
     required: true,
     unique: false
+  },
+  img_name: {
+    type: String,
+    required: false,
+    unique: false
   }
 });
 

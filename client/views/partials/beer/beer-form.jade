@@ -1,5 +1,7 @@
+
+
 h1 Add beer
-form
+form(name='beerForm')
   .form-group
     label Name
     input.form-control(ng-model='beer.name')
@@ -9,4 +11,15 @@ form
   .form-group
     label Description
     textarea.form-control(ng-model='beer.description')
+  .form-group(ng-controller='ImageUploadCtrl', name='form')
+    label Upload image
+    input(type='file', ngf-select='', ng-model='picFile', name='file', accept='image/*', ngf-max-size='2MB', required='', ngf-model-invalid='errorFile')
+
+    button(ng-disabled='!beerForm.$valid', ng-click='uploadPic(picFile)') Submit
+    span.progress(ng-show='picFile.progress >= 0')
+      div(style='width:{{picFile.progress}}%', ng-bind="picFile.progress + '%'")
+    span(ng-show='picFile.result') Upload Successful
+    span.err(ng-show='errorMsg') {{errorMsg}}
+
+
   input.btn.btn-primary(type='button', value='Save', ng-click='save()')
