@@ -10,4 +10,20 @@ div(class='col-sm-4')
   h4 Description:
   p(ng-bind='beer.description')
 
-  a(href='#/beers') Back
+
+div(class='col-sm-7')
+
+  form(name='commentForm', class='form-horizontah', ng-controller="AddCommentCtrl")
+    .form-group
+      label.control-label Comment
+      input.form-control(ng-model='comment.content', ng-required='true')
+    .form-group
+      label.control-label Rating
+      select.form-control(ng-model='comment.rating', ng-options='star for star in stars', ng-required='true')
+
+    input.btn.btn-primary(type='button', ng-disabled='commentForm.$invalid', value='Post', ng-click='save()')
+
+  ul(class='list-group', ng-controller="ViewCommentsCtrl")
+    li(ng-repeat='comment in comments', class='list-group-item')
+      
+      div {{comment.content}} {{comment.rating}}

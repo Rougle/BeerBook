@@ -14,6 +14,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var beers = require('./routes/beers');
 var images = require('./routes/images');
+var comments = require('./routes/comments');
 
 
 
@@ -98,6 +99,7 @@ app.use('/api/auth', authRoute);
 app.use('/api/users', users);
 app.use('/api/beers', beers);
 app.use('/api/images', images);
+app.use('/api/comments', comments);
 
 //Angular partials are rendered at server. Jade stuff.
 app.get('/views/partials/:name', function (req, res){
