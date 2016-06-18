@@ -1,11 +1,11 @@
 
 h3 Beers
-ul
-  li(ng-repeat='beer in beers')
+ul(class='list-group')
+  li(ng-repeat='beer in beers', class='list-group-item')
     a(href='/#/beers/{{beer._id}}')
       | {{beer.name}}
-    a(href='/#/beers/edit/{{beer._id}}')
-      | Edit
-    a(href='/#/beers/delete/{{beer._id}}')
+    a(class='pull-right', href='/#/beers/delete/{{beer._id}}')
       | Delete
+    a(class='pull-right', href='/#/beers/edit/{{beer._id}}')
+      | Edit
 a(href='/#/beers/add') Add beer

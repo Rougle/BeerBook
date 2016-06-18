@@ -1,14 +1,11 @@
 h3 Users
 
-ul
-  li(ng-repeat='user in users')
+ul(class='list-group')
+  li(ng-repeat='user in users', class='list-group-item')
     a(href='/#/user/edit/{{user._id}}') {{user.username}}
-    a(href='/#/user/delete/{{user._id}}') Delete
+    a(class='pull-right', href='/#/user/delete/{{user._id}}') Delete
 
 a(href='/#/user/register') Add user
 
 br
 br
-
-a(href='/#/auth/login', class='btn btn-primary') Login
-a(href='/#/auth/logout', class='btn btn-primary') Logout
