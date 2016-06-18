@@ -70,7 +70,6 @@ angular.module('BeerBook').controller('ViewBeerCtrl', ['$scope', '$resource', '$
     Beers.get({ id: $routeParams.id }, function(beer){
       $scope.beer = beer;
       $scope.beer.imagePath = 'resources/images/beers/' + beer.img_name;
-      console.log($scope.imagePath);
     });
 }]);
 

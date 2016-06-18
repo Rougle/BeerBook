@@ -4,13 +4,13 @@ h1 Add beer
 form(name='beerForm')
   .form-group
     label Name
-    input.form-control(ng-model='beer.name')
+    input.form-control(ng-model='beer.name', ng-required='true')
   .form-group
     label Type
-    textarea.form-control(ng-model='beer.type')
+    textarea.form-control(ng-model='beer.type', ng-required='true')
   .form-group
     label Description
-    textarea.form-control(ng-model='beer.description')
+    textarea.form-control(ng-model='beer.description', ng-required='true')
   .form-group
     label Upload image
     button(type='file', ngf-select='uploadFiles($file, $invalidFiles)', accept='image/*', ngf-max-size='2MB') Select File
@@ -22,4 +22,4 @@ form(name='beerForm')
     |   {{errorMsg}}
 
 
-  input.btn.btn-primary(type='button', value='Save', ng-click='save()')
+  input.btn.btn-primary(type='button', ng-disabled='beerForm.$invalid || f.name == null', value='Save', ng-click='save()')
