@@ -11,15 +11,15 @@ form(name='beerForm')
   .form-group
     label Description
     textarea.form-control(ng-model='beer.description')
-  .form-group(ng-controller='ImageUploadCtrl', name='form')
+  .form-group
     label Upload image
-    input(type='file', ngf-select='', ng-model='picFile', name='file', accept='image/*', ngf-max-size='2MB', required='', ngf-model-invalid='errorFile')
+    button(type='file', ngf-select='uploadFiles($file, $invalidFiles)', accept='image/*', ngf-max-size='2MB') Select File
 
-    button(ng-disabled='!beerForm.$valid', ng-click='uploadPic(picFile)') Submit
-    span.progress(ng-show='picFile.progress >= 0')
-      div(style='width:{{picFile.progress}}%', ng-bind="picFile.progress + '%'")
-    span(ng-show='picFile.result') Upload Successful
-    span.err(ng-show='errorMsg') {{errorMsg}}
+    div(style='font:smaller')
+      | {{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+      span.progress(ng-show='f.progress >= 0')
+        div(style='width:{{f.progress}}%', ng-bind="f.progress + '%'")
+    |   {{errorMsg}}
 
 
   input.btn.btn-primary(type='button', value='Save', ng-click='save()')

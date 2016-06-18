@@ -6,13 +6,41 @@ angular.module('BeerBook').controller('ViewBeersCtrl', ['$scope', '$resource',
     })
 }]);
 
-angular.module('BeerBook').controller('AddBeerCtrl', ['$scope', '$resource', '$location',
-  function($scope, $resource, $location){
+angular.module('BeerBook').controller('AddBeerCtrl', ['$scope', '$resource', '$location', 'Upload', '$timeout',
+  function($scope, $resource, $location, Upload, $timeout){
+
+    var filename = ''; //beer picture filename
+
     $scope.save = function(){
+      $scope.beer.filename = filename;
       var Beers = $resource('/api/beers');
       Beers.save($scope.beer, function(){
         $location.path('/beers');
       });
+    }
+    // This will upload pic
+    $scope.uploadFiles = function(file, errFiles) {
+      $scope.f = file;
+      $scope.errFile = errFiles && errFiles[0];
+      if (file) {
+        file.upload = Upload.upload({
+          url: '/api/images',
+          data: {file: file},
+        });
+
+        file.upload.then(function (response) {
+          $timeout(function () {
+            file.result = response.data;
+            filename = response.data.filename; //get file name so we can save it
+          });
+        }, function (response) {
+          if (response.status > 0)
+            $scope.errorMsg = response.status + ': ' + response.data;
+        }, function (evt) {
+          // Math.min is to fix IE which reports 200% sometimes
+          file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+        });
+      }
     }
 }]);
 

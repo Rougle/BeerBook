@@ -1,34 +1,25 @@
 var express = require('express');
 var router = express.Router();
+var shortid = require('shortid');
 var path = require('path');
 
-//var Image = require('../models/image');
-var Beer = require('../models/beer');
+var mv = require('mv');
 
 var multiparty = require('connect-multiparty');
-var multipartyOptions = {autoFile: true, 
-  uploadDir: ('./client/resources/images/beers')};
+var multipartyOptions = multiparty();
 
+//Saves image
 router.post('/', multiparty(multipartyOptions), function(req, res){
   var file = req.files.file;
 
-  console.log(file.name);
-  console.log(file.type);
-  console.log(file.path);
-  res.status(200).send('OK')
+  var filename = shortid.generate() + path.extname(file.path);
 
-  /*
-  var newImage = new Image({
-    name: file.name,
-    location: file.location
-  });
-
-  newImage.save(function(err, newImage){
+  mv(file.path, './client/resources/images/beers/' + filename, function(err){
     if(err) throw err;
-
-    res.json(newImage);
   });
-  */
+
+  res.status(200).json({filename: filename}); //send filename so it cane be saved to db
+
 });
 
 

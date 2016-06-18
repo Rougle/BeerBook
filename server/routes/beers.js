@@ -15,10 +15,12 @@ router.get('/', function(req, res){
 
 // Add beer
 router.post('/', function(req, res){
+  console.log(req.body.filename);
   var newBeer = new Beer({
     name: req.body.name,
     type: req.body.type,
-    description: req.body.description
+    description: req.body.description,
+    img_name: req.body.filename
   });
 
   newBeer.save(function(err, newBeer){
