@@ -1,18 +1,18 @@
 
 
 h1 Add beer
-form(name='beerForm')
+form(name='beerForm', class='form-horizontal')
   .form-group
-    label Name
+    label.control-label Name
     input.form-control(ng-model='beer.name', ng-required='true')
   .form-group
-    label Type
+    label.control-label Type
     textarea.form-control(ng-model='beer.type', ng-required='true')
   .form-group
-    label Description
+    label.control-label Description
     textarea.form-control(ng-model='beer.description', ng-required='true')
   .form-group
-    label Upload image
+    label.control-label Upload image
     button(type='file', ngf-select='uploadFiles($file, $invalidFiles)', accept='image/*', ngf-max-size='2MB') Select File
 
     div(style='font:smaller')
