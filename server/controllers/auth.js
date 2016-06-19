@@ -1,53 +1,66 @@
-
-// database
-var User = require('../models/user');
-
-// Passport
 var passport = require('passport');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-//=========AUTHENTICATION========
+module.exports.register = function(req, res) {
+  var user = new User();
 
-// login route
-module.exports.login =function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
+  user.username = req.body.username;
+  user.email = req.body.email;
+  user.password = req.body.password;
+  user.role = req.body.role;
+
+  user.setPassword(req.body.password);
+
+  user.save(function(err) {
+    var token;
+    token = user.generateJwt();
+    res.status(200);
+    res.json({
+      "token" : token
+    });
+  });
+};
+
+module.exports.login = function(req, res) {
+
+  passport.authenticate('local', function(err, user, info){
+    var token;
+
+    // If Passport throws/catches an error
     if (err) {
-      return next(err);
+      res.status(404).json(err);
+      return;
     }
-    if (!user) {
-      console.log(info);
-      return res.status(401).json({
-        err: info
+
+    // If a user is found
+    if(user){
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        "token" : token
       });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
     }
-    req.login(user, function(err) {
-      if (err) {
-        return res.status(500).json({
-          err: 'Could not log in user'
-        });
-      }
-      res.status(200).json({
-        status: 'Login successful!'
-      });
-    });
-  })(req, res, next);
+  })(req, res);
+
 };
 
-// logout route
-module.exports.logout = function(req, res){
-  req.logout();
-  res.status(200).json({
-    status: 'logged out'
-  });
-};
-
-//get status
-module.exports.status = function(req, res) {
-  if (!req.isAuthenticated()) {
-    return res.status(200).json({
-      status: false
+// Get own profile
+module.exports.loggedUser = function(req, res){
+  // If no user ID exists in the JWT return a 401
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "You need to log in first."
     });
+  } else {
+    // Otherwise continue
+    User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
+        res.status(200).json(user);
+      });
   }
-  res.status(200).json({
-    status: true
-  });
 };

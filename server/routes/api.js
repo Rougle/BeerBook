@@ -18,7 +18,7 @@ var ctrlAuth = require('../controllers/auth');
 // Beer routes and controllers
 router.get('/beers', ctrlBeers.getBeers);
 router.get('/beers/:id', ctrlBeers.getBeer);
-router.post('/beers', ctrlBeers.addBeer);
+//router.post('/beers', ctrlBeers.addBeer);
 router.put('/beers/:id', ctrlBeers.editBeer);
 router.delete('/beers/:id', ctrlBeers.deleteBeer);
 
@@ -37,9 +37,10 @@ router.post('/comments', ctrlComments.addComment);
 router.post('/images', multiparty(multipartyOptions), ctrlImages.saveImage);
 
 // Auth routes and controllers
-router.post('/auth/login', ctrlAuth.login);
-router.get('/auth/logout', ctrlAuth.logout);
-router.get('/auth/status', ctrlAuth.status);
+router.post('/register', ctrlAuth.register);
+router.post('/login', ctrlAuth.login);
+//router.get('/auth/logout', ctrlAuth.logout);
+//router.get('/auth/user', auth, ctrlAuth.loggedUser);
 
 
 

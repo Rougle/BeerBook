@@ -10,9 +10,8 @@ html(ng-app='BeerBook')
     script(src='/javascripts/clientMain.js')
     script(src='/javascripts/controllers/usersCtrl.js')
     script(src='/javascripts/controllers/beersCtrl.js')
-    script(src='/javascripts/controllers/authCtrl.js')
     script(src='/javascripts/controllers/commentsCtrl.js')
-    script(src='/javascripts/authService.js')
+    script(src='/javascripts/authenticationService.js')
     script(src='/static/ng-file-upload.min.js')
   
 
@@ -35,10 +34,10 @@ html(ng-app='BeerBook')
                 a(href='#/beers') Beers
             if user
               li
-                a(href='#/auth/logout/') Logout
+                a(href='#/user/logout/') Logout
             else
               li
-                a(href='#/auth/login/') Login
+                a(href='#/user/login/') Login
               li
                 a(href='#/user/register/') Signup
 

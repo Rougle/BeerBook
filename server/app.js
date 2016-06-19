@@ -73,8 +73,9 @@ app.get('/views/partials/user/:name', function (req, res){
   res.render('views/partials/user/' + name);
 });
 
-//==================================================================
-
+//===================================================================
+// ERROR HANDLERS
+//===================================================================
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -83,7 +84,13 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 
 // development error handler
 // will print stacktrace

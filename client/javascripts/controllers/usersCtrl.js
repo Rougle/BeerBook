@@ -6,15 +6,37 @@ angular.module('BeerBook').controller('HomeCtrl', ['$scope', '$resource',
     })
 }]);
 
-angular.module('BeerBook').controller('RegisterUserCtrl', ['$scope', '$resource', '$location',
-  function($scope, $resource, $location){
+angular.module('BeerBook').controller('RegisterCtrl', ['$scope', '$location', 'authenticationService',
+  function($scope, $location, authenticationService){
     $scope.save = function(){
-      var Users = $resource('/api/users');
-      Users.save($scope.user, function(){
-        $location.path('/');
-      });
+
+      authenticationService
+        .register($scope.user)
+        .error(function(err){
+          alert(err);
+        })
+        .then(function(){
+          $location.path('/')
+        })
     }
 }]);
+
+angular.module('BeerBook').controller('LoginCtrl', ['$scope', '$location', 'authenticationService',
+  function($scope, $location, authenticationService){
+    $scope.login = function(){
+      
+      authenticationService
+        .login($scope.user)
+        .error(function(err){
+          alert(err);
+        })
+        .then(function(){
+          $location.path('/beers')
+        })
+    }
+}]);
+
+
 
 angular.module('BeerBook').controller('EditUserCtrl', ['$scope', '$resource', '$location', '$routeParams',
   function($scope, $resource, $location, $routeParams){

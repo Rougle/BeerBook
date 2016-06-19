@@ -4,71 +4,45 @@ app.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/', {
       templateUrl: 'views/partials/home',
-      controller: 'HomeCtrl',
-      access: {restricted: false}
+      controller: 'HomeCtrl'
     })
     .when('/user/register', {
       templateUrl: 'views/partials/user/user-form',
-      controller: 'RegisterUserCtrl',
-      access: {restricted: false}
+      controller: 'RegisterCtrl'
     })
     .when('/user/edit/:id', {
       templateUrl: 'views/partials/user/user-form',
-      controller: 'EditUserCtrl',
-      access: {restricted: false}
+      controller: 'EditUserCtrl'
     })
     .when('/user/delete/:id', {
       templateUrl: 'views/partials/user/user-delete',
-      controller: 'DeleteUserCtrl',
-      access: {restricted: false}
+      controller: 'DeleteUserCtrl'
     })
-    .when('/auth/login', {
+    .when('/user/login', {
       templateUrl: 'views/partials/user/user-login',
-      controller: 'LoginCtrl',
-      access: {restricted: false}
-    })
-    .when('/auth/logout', {
-      template: '<h1>Angular forced me to show you something ;_;</h1>',
-      controller: 'LogoutCtrl',
-      access: {restricted: false}
+      controller: 'LoginCtrl'
     })
     .when('/beers', {
       templateUrl: 'views/partials/beer/beers',
-      controller: 'ViewBeersCtrl',
-      access: {restricted: false}
+      controller: 'ViewBeersCtrl'
     })
     .when('/beers/add', {
       templateUrl: 'views/partials/beer/beer-form',
-      controller: 'AddBeerCtrl',
-      access: {restricted: false}
+      controller: 'AddBeerCtrl'
     })
     .when('/beers/edit/:id', {
       templateUrl: 'views/partials/beer/beer-form',
-      controller: 'EditBeerCtrl',
-      access: {restricted: false}
+      controller: 'EditBeerCtrl'
     })
     .when('/beers/delete/:id', {
       templateUrl: 'views/partials/beer/beer-delete',
-      controller: 'DeleteBeerCtrl',
-      access: {restricted: false}
+      controller: 'DeleteBeerCtrl'
     })
     .when('/beers/:id', {
       templateUrl: 'views/partials/beer/beer-info',
-      controller: 'ViewBeerCtrl',
-      access: {restricted: false}
+      controller: 'ViewBeerCtrl'
     })    
     .otherwise({
       redirectTo: '/'
     });
 }]);
-
-app.run(function ($rootScope, $location, $route, AuthService) {
-  $rootScope.$on('$routeChangeStart',
-    function (event, next, current) {
-      AuthService.getUserStatus();
-      if (next.access.restricted && !AuthService.isLoggedIn()) {
-        $location.path('/auth/login');
-        $route.reload();
-      }
-  });
-});
