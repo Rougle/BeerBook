@@ -1,20 +1,18 @@
-var express = require('express');
-var router = express.Router();
 
 var Beer = require('../models/beer');
 var passport = require('passport');
 
 // Get all beers
-router.get('/', function(req, res){
+module.exports.getBeers = function(req, res){
   Beer.find({}, function(err, beers) {
     if(err) throw err;
 
     res.json(beers);
   });
-});
+};
 
 // Add beer
-router.post('/', function(req, res){
+module.exports.addBeer = function(req, res){
   console.log(req.body.filename);
   var newBeer = new Beer({
     name: req.body.name,
@@ -28,19 +26,19 @@ router.post('/', function(req, res){
 
     res.json(newBeer);
   });
-});
+};
 
 // Get beer by id
-router.get('/:id', function(req, res){
+module.exports.getBeer = function(req, res){
   Beer.findOne({ _id: req.params.id}, function(err, beer){
     if (err) throw err;
 
     res.json(beer);
   });
-});
+};
 
 // Edit beer by id
-router.put('/:id', function(req, res){
+module.exports.editBeer = function(req, res){
   Beer.findById(req.params.id, function(err, beer){
     if(err) throw err;
     
@@ -54,10 +52,10 @@ router.put('/:id', function(req, res){
     });
   
   });
-});
+};
 
 // Delete beer by id
-router.delete('/:id', function(req, res){
+module.exports.deleteBeer = function(req, res){
   
   Beer.findById(req.params.id, function(err, beer){
     if(err) throw err;
@@ -67,6 +65,4 @@ router.delete('/:id', function(req, res){
       res.json(beer);
     });
   });
-});
-
-module.exports = router;
+};

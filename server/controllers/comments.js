@@ -1,20 +1,17 @@
-var express = require('express');
-var router = express.Router();
 
 var Comment = require('../models/comment');
-var passport = require('passport');
 
 // Get all comments
-router.get('/', function(req, res){
+module.exports.getComments = function(req, res){
   Comment.find({}, function(err, comments) {
     if(err) throw err;
 
     res.json(comments);
   });
-});
+};
 
 // Add comment
-router.post('/', function(req, res){
+module.exports.addComment = function(req, res){
   console.log(req.body.filename);
   var newComment = new Comment({
     user: req.body.user,
@@ -28,6 +25,4 @@ router.post('/', function(req, res){
 
     res.json(newComment);
   });
-});
-
-module.exports = router;
+};

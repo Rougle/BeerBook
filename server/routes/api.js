@@ -1,0 +1,46 @@
+var express = require('express');
+var router = express.Router();
+var multiparty = require('connect-multiparty');
+var multipartyOptions = multiparty();
+
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
+
+var ctrlUsers = require('../controllers/users');
+var ctrlBeers = require('../controllers/beers');
+var ctrlComments = require('../controllers/comments');
+var ctrlImages = require('../controllers/images');
+var ctrlAuth = require('../controllers/auth');
+
+// Beer routes and controllers
+router.get('/beers', ctrlBeers.getBeers);
+router.get('/beers/:id', ctrlBeers.getBeer);
+router.post('/beers', ctrlBeers.addBeer);
+router.put('/beers/:id', ctrlBeers.editBeer);
+router.delete('/beers/:id', ctrlBeers.deleteBeer);
+
+// User routes and controllers
+router.get('/users', ctrlUsers.getUsers);
+router.get('/users/:id', ctrlUsers.getUser);
+router.post('/users', ctrlUsers.registerUser);
+router.put('/users/:id', ctrlUsers.editUser);
+router.delete('/users/:id', ctrlUsers.deleteUser);
+
+// Comment routes and controllers
+router.get('/comments', ctrlComments.getComments);
+router.post('/comments', ctrlComments.addComment);
+
+// Image routes and controllers, note the middleware
+router.post('/images', multiparty(multipartyOptions), ctrlImages.saveImage);
+
+// Auth routes and controllers
+router.post('/auth/login', ctrlAuth.login);
+router.get('/auth/logout', ctrlAuth.logout);
+router.get('/auth/status', ctrlAuth.status);
+
+
+
+module.exports = router;

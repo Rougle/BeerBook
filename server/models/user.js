@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
@@ -12,44 +13,45 @@ var userSchema = new Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    unique: true,
+    required: true
+  },
   role: {
     type: String,
     required: true,
     unique: false
-  }
+  },
+  hash: String,
+  salt: String
 });
 
-userSchema.pre('save', function(next){
-  var user = this;
-  var SALT_FACTOR = 5;
-
-  if(!user.isModified('password'))
-    return next();
-
-  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
-    
-    if(err) 
-      return next(err);
-    
-    else
-      bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err)
-        return next(err);
-
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-userSchema.methods.comparePassword = function(candidatePassword, cb){
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch){
-    if (err)
-      return cb(err);
-
-    cb(null, isMatch);
-  });
+// Sets password
+userSchema.methods.setPassword = function(password){
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 };
+
+// Checks if passoword is correct
+userSchema.methods.validPassword = function(password) {
+  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
+  return this.hash === hash;
+};
+
+// Generate JWT token
+userSchema.methods.generateJwt = function() {
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7);
+
+  return jwt.sign({
+    _id: this._id,
+    email: this.email,
+    username: this.username,
+    exp: parseInt(expiry.getTime() / 1000),
+  }, "MY_SECRET"); //SET THIS AS AN ENVIRONMENT VARIABLE LATER
+};
+
 
 var User = mongoose.model('User', userSchema);
 

@@ -9,56 +9,16 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 
 // Routes
-var authRoute = require('./routes/auth');
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var beers = require('./routes/beers');
-var images = require('./routes/images');
-var comments = require('./routes/comments');
+var routesApi = require('./routes/api');
+var routesIndex = require('./routes/index');
 
-
-
-//===========Passport==============================================
+// Passport
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
 
-var User = require('./models/user');
-
-// Define passportJS strategy
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
-      if (err)
-        return done(err);
-      
-      if (!user)
-        return done(null, false, { message: 'Incorrect username.' });
-
-      user.comparePassword(password, function(err, isMatch){
-        console.log(password);
-        if(isMatch)
-          return done(null, user);
-        else
-          return done(null, false, { message: 'Incorrect password.' });
-      });
-    });
-  }
-));
-
-
-// Serialized and deserialized methods when got from session
-passport.serializeUser(function(user, done){
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done){
-  User.findById(id, function(err, user){
-    done(err, user);
-  });
-});
-
+// Database
+require('./models/db');
+require('./config/passport');
 
 //================================================================
 
@@ -76,9 +36,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../client')));
 
-//Some static routes
+//Static routes
+app.use(express.static(path.join(__dirname, '../client')));
 app.use('/static', express.static((path.join(__dirname, '../node_modules/ng-file-upload/dist'))));
 app.use('/resources', express.static((path.join(__dirname, '../client/resources'))));
 
@@ -93,13 +53,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); 
 
-// Routes
-app.use('/', routes);
-app.use('/api/auth', authRoute);
-app.use('/api/users', users);
-app.use('/api/beers', beers);
-app.use('/api/images', images);
-app.use('/api/comments', comments);
+// Routes for API
+app.use('/api', routesApi);
+app.use('/', routesIndex);
 
 //Angular partials are rendered at server. Jade stuff.
 app.get('/views/partials/:name', function (req, res){
@@ -116,9 +72,6 @@ app.get('/views/partials/user/:name', function (req, res){
   var name = req.params.name;
   res.render('views/partials/user/' + name);
 });
-
-//Connect to database
-mongoose.connect('mongodb://localhost:27017/BeerBook');
 
 //==================================================================
 
