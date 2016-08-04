@@ -6,7 +6,6 @@ var passport = require('passport');
 module.exports.getBeers = function(req, res){
   Beer.find({}, function(err, beers) {
     if(err) throw err;
-
     res.json(beers);
   });
 };

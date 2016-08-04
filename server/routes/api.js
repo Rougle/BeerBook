@@ -18,7 +18,7 @@ var ctrlAuth = require('../controllers/auth');
 // Beer routes and controllers
 router.get('/beers', ctrlBeers.getBeers);
 router.get('/beers/:id', ctrlBeers.getBeer);
-//router.post('/beers', ctrlBeers.addBeer);
+router.post('/beers', ctrlBeers.addBeer);
 router.put('/beers/:id', ctrlBeers.editBeer);
 router.delete('/beers/:id', ctrlBeers.deleteBeer);
 
