@@ -1,4 +1,4 @@
-angular.module('BeerBook').controller('ViewCommentsCtrl', ['$scope', '$resource', 
+angular.module('beerBook').controller('ViewCommentsCtrl', ['$scope', '$resource', 
   function($scope, $resource){
     var Comments = $resource('/api/comments');
     Comments.query(function(comments){
@@ -6,15 +6,25 @@ angular.module('BeerBook').controller('ViewCommentsCtrl', ['$scope', '$resource'
     })
 }]);
 
-angular.module('BeerBook').controller('AddCommentCtrl', ['$scope', '$resource', '$location',
-  function($scope, $resource, $location){
+angular.module('beerBook').controller('AddCommentCtrl', ['$scope', '$resource', '$route', '$routeParams',
+  function($scope, $resource, $route, $routeParams){
 
     $scope.stars = ["1", "2", "3", "4", "5"];
-
     $scope.save = function(){
       var Comments = $resource('/api/comments');
+      $scope.comment.beerId = $routeParams.id;
       Comments.save($scope.comment, function(){
-        $location.path('/beers');
+        $route.reload();
       });
     }
+}]);
+
+angular.module('beerBook').controller('GetBeerCommentsCtrl', ['$scope', '$resource', '$routeParams',
+  function($scope, $resource, $routeParams){
+    var Comments = $resource('/api/comments/beer/:id');
+
+    Comments.query({ id: $routeParams.id }, function(comments){
+      $scope.comments = comments;
+    });
+
 }]);

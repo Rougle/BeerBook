@@ -1,4 +1,4 @@
-var app = angular.module('BeerBook', ['ngResource', 'ngRoute', 'ngFileUpload']);
+var app = angular.module('beerBook', ['ngResource', 'ngRoute', 'ngFileUpload']);
 
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider

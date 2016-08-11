@@ -32,6 +32,7 @@ router.delete('/users/:id', ctrlUsers.deleteUser);
 // Comment routes and controllers
 router.get('/comments', ctrlComments.getComments);
 router.post('/comments', ctrlComments.addComment);
+router.get('/comments/beer/:id', ctrlComments.getBeerComments);
 
 // Image routes and controllers, note the middleware
 router.post('/images', multiparty(multipartyOptions), ctrlImages.saveImage);

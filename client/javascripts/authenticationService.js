@@ -1,4 +1,4 @@
-angular.module('BeerBook').factory('authenticationService',
+angular.module('beerBook').factory('authenticationService',
   ['$http', '$window',
   function ($http, $window) {
     

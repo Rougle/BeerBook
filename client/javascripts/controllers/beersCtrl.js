@@ -1,4 +1,4 @@
-angular.module('BeerBook').controller('ViewBeersCtrl', ['$scope', '$resource', 
+angular.module('beerBook').controller('ViewBeersCtrl', ['$scope', '$resource', 
   function($scope, $resource){
     var Beers = $resource('/api/beers');
     Beers.query(function(beers){
@@ -6,7 +6,7 @@ angular.module('BeerBook').controller('ViewBeersCtrl', ['$scope', '$resource',
     })
 }]);
 
-angular.module('BeerBook').controller('AddBeerCtrl', ['$scope', '$resource', '$location', 'Upload', '$timeout',
+angular.module('beerBook').controller('AddBeerCtrl', ['$scope', '$resource', '$location', 'Upload', '$timeout',
   function($scope, $resource, $location, Upload, $timeout){
 
     var filename = ''; //beer picture filename
@@ -44,7 +44,7 @@ angular.module('BeerBook').controller('AddBeerCtrl', ['$scope', '$resource', '$l
     }
 }]);
 
-angular.module('BeerBook').controller('EditBeerCtrl', ['$scope', '$resource', '$location', '$routeParams',
+angular.module('beerBook').controller('EditBeerCtrl', ['$scope', '$resource', '$location', '$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Beers = $resource('/api/beers/:id', { id: '@_id' }, {
@@ -62,7 +62,7 @@ angular.module('BeerBook').controller('EditBeerCtrl', ['$scope', '$resource', '$
     }
 }]);
 
-angular.module('BeerBook').controller('ViewBeerCtrl', ['$scope', '$resource', '$location', '$routeParams',
+angular.module('beerBook').controller('ViewBeerCtrl', ['$scope', '$resource', '$location', '$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Beers = $resource('/api/beers/:id');
@@ -73,7 +73,7 @@ angular.module('BeerBook').controller('ViewBeerCtrl', ['$scope', '$resource', '$
     });
 }]);
 
-angular.module('BeerBook').controller('DeleteBeerCtrl', ['$scope', '$resource', '$location','$routeParams',
+angular.module('beerBook').controller('DeleteBeerCtrl', ['$scope', '$resource', '$location','$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Beers = $resource('/api/beers/:id');

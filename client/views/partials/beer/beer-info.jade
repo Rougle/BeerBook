@@ -23,7 +23,7 @@ div(class='col-sm-7')
 
     input.btn.btn-primary(type='button', ng-disabled='commentForm.$invalid', value='Post', ng-click='save()')
 
-  ul(class='list-group', ng-controller="ViewCommentsCtrl")
+  ul(class='list-group', ng-controller="GetBeerCommentsCtrl")
     li(ng-repeat='comment in comments', class='list-group-item')
       
       div {{comment.content}} {{comment.rating}}

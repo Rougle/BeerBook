@@ -9,3 +9,6 @@ form
     label Password
     textarea.form-control(ng-model='user.password')
     input.btn.btn-primary(type='button', value='Login', ng-click='login()')
+
+h1 Logged in as
+  span(ng-bind='logged')

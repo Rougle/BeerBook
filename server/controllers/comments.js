@@ -1,5 +1,6 @@
 
 var Comment = require('../models/comment');
+var Beer = require('../models/beer');
 
 // Get all comments
 module.exports.getComments = function(req, res){
@@ -12,10 +13,10 @@ module.exports.getComments = function(req, res){
 
 // Add comment
 module.exports.addComment = function(req, res){
-  console.log(req.body.filename);
+
   var newComment = new Comment({
     user: req.body.user,
-    beer: req.body.beer,
+    beerId: req.body.beerId,
     content: req.body.content,
     rating: req.body.rating
   });
@@ -25,4 +26,15 @@ module.exports.addComment = function(req, res){
 
     res.json(newComment);
   });
+};
+
+//get comments related to beer
+module.exports.getBeerComments = function(req, res){
+  Comment.find(
+  {'beerId': req.params.id}, 'user content rating',
+    function(err, comments) {
+      if(err) throw err;
+
+      res.json(comments);
+    });
 };

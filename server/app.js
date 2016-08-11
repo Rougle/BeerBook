@@ -73,6 +73,7 @@ app.get('/views/partials/user/:name', function (req, res){
   res.render('views/partials/user/' + name);
 });
 
+
 //===================================================================
 // ERROR HANDLERS
 //===================================================================

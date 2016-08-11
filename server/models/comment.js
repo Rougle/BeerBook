@@ -8,7 +8,7 @@ var commentSchema = new Schema({
     required: false,
     unique: false
   },
-  beer: {
+  beerId: {
     type: String,
     required: false,
     unique: false

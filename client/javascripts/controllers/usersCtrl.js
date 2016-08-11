@@ -1,4 +1,4 @@
-angular.module('BeerBook').controller('HomeCtrl', ['$scope', '$resource', 
+angular.module('beerBook').controller('HomeCtrl', ['$scope', '$resource', 
   function($scope, $resource){
     var Users = $resource('/api/users');
     Users.query(function(users){
@@ -6,7 +6,7 @@ angular.module('BeerBook').controller('HomeCtrl', ['$scope', '$resource',
     })
 }]);
 
-angular.module('BeerBook').controller('RegisterCtrl', ['$scope', '$location', 'authenticationService',
+angular.module('beerBook').controller('RegisterCtrl', ['$scope', '$location', 'authenticationService',
   function($scope, $location, authenticationService){
     $scope.save = function(){
 
@@ -21,8 +21,12 @@ angular.module('BeerBook').controller('RegisterCtrl', ['$scope', '$location', 'a
     }
 }]);
 
-angular.module('BeerBook').controller('LoginCtrl', ['$scope', '$location', 'authenticationService',
+angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'authenticationService',
   function($scope, $location, authenticationService){
+    
+    $scope.logged = authenticationService.currentUser().username;
+    console.log($scope.logged);
+
     $scope.login = function(){
       
       authenticationService
@@ -38,7 +42,7 @@ angular.module('BeerBook').controller('LoginCtrl', ['$scope', '$location', 'auth
 
 
 
-angular.module('BeerBook').controller('EditUserCtrl', ['$scope', '$resource', '$location', '$routeParams',
+angular.module('beerBook').controller('EditUserCtrl', ['$scope', '$resource', '$location', '$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Users = $resource('/api/users/:id', { id: '@_id' }, {
@@ -56,7 +60,7 @@ angular.module('BeerBook').controller('EditUserCtrl', ['$scope', '$resource', '$
     }
 }]);
 
-angular.module('BeerBook').controller('DeleteUserCtrl', ['$scope', '$resource', '$location','$routeParams',
+angular.module('beerBook').controller('DeleteUserCtrl', ['$scope', '$resource', '$location','$routeParams',
   function($scope, $resource, $location, $routeParams){
 
     var Users = $resource('/api/users/:id');
