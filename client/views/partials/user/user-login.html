@@ -1,0 +1,14 @@
+
+<h1>Login user</h1>
+<div class="alert alert-danger" ng-show="error">{{errorMessage}}</div>
+<form>
+  <div class="form-group">
+    <label>Username</label>
+    <input class="form-control" ng-model="user.username"/>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <textarea class="form-control" ng-model="user.password"></textarea>
+    <input class="btn btn-primary" type="button" value="Login" ng-click="login()"/>
+  </div>
+</form>

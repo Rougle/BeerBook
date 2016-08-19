@@ -1,0 +1,27 @@
+
+<h1 ng-bind="beer.name"></h1>
+<div class="col-sm-3"><img class="img-responsive" style="max-height:400px" ng-src="{{beer.imagePath}}"/></div>
+<div class="col-sm-4">
+  <h4>Style: </h4>
+  <p ng-bind="beer.type"></p>
+  <h4>Description:</h4>
+  <p ng-bind="beer.description"></p>
+</div>
+<div class="col-sm-7">
+  <form class="form-horizontah" name="commentForm" ng-controller="AddCommentCtrl">
+    <div class="form-group">
+      <label class="control-label">Comment</label>
+      <input class="form-control" ng-model="comment.content" ng-required="true"/>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Rating</label>
+      <select class="form-control" ng-model="comment.rating" ng-options="star for star in stars" ng-required="true"></select>
+    </div>
+    <input class="btn btn-primary" type="button" ng-disabled="commentForm.$invalid" value="Post" ng-click="save()"/>
+  </form>
+  <ul class="list-group" ng-controller="GetBeerCommentsCtrl">
+    <li class="list-group-item" ng-repeat="comment in comments">
+      <div>{{comment.content}} {{comment.rating}}</div>
+    </li>
+  </ul>
+</div>
