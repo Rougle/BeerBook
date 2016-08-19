@@ -8,7 +8,8 @@
   <p ng-bind="beer.description"></p>
 </div>
 <div class="col-sm-7">
-  <form class="form-horizontah" name="commentForm" ng-controller="AddCommentCtrl">
+  <h4>Comments</h4>
+  <form class="form-horizontah" name="commentForm" ng-controller="AddCommentCtrl" ng-hide="!isLoggedIn">
     <div class="form-group">
       <label class="control-label">Comment</label>
       <input class="form-control" ng-model="comment.content" ng-required="true"/>

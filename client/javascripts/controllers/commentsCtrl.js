@@ -6,8 +6,10 @@ angular.module('beerBook').controller('ViewCommentsCtrl', ['$scope', '$resource'
     })
 }]);
 
-angular.module('beerBook').controller('AddCommentCtrl', ['$scope', '$resource', '$route', '$routeParams',
-  function($scope, $resource, $route, $routeParams){
+angular.module('beerBook').controller('AddCommentCtrl', ['$scope', '$resource', '$route', '$routeParams', 'authenticationService',
+  function($scope, $resource, $route, $routeParams, authenticationService){
+
+    $scope.isLoggedIn = authenticationService.isLoggedIn();
 
     $scope.stars = ["1", "2", "3", "4", "5"];
     $scope.save = function(){
