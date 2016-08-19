@@ -12,34 +12,14 @@ html(ng-app='beerBook')
     script(src='/javascripts/controllers/beersCtrl.js')
     script(src='/javascripts/controllers/commentsCtrl.js')
     script(src='/javascripts/authenticationService.js')
+    script(src='/javascripts/common/navigation/navigation.directive.js')
+    script(src='/javascripts/common/navigation/navigation.controller.js')
     script(src='/static/ng-file-upload.min.js')
   
 
   body
 
-    .navbar.navbar-inverse.navbar-static-top(role='navigation')
-      .container
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='#/') beerBook
-        .collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li.active
-              a(href='#/') Home
-              li
-                a(href='#/beers') Beers
-            if user
-              li
-                a(href='#/user/logout/') Logout
-            else
-              li
-                a(href='#/user/login/') Login
-              li
-                a(href='#/user/register/') Register
+    navigation
 
     .container
       block content

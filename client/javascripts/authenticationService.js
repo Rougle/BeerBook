@@ -41,6 +41,7 @@ angular.module('beerBook').factory('authenticationService',
           username : payload.username
         };
       }
+      return null;
     };
 
     register = function(user) {

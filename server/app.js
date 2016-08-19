@@ -57,7 +57,7 @@ app.use(passport.session());
 app.use('/api', routesApi);
 app.use('/', routesIndex);
 
-//Angular partials are rendered at server. Jade stuff.
+/* Angular partials are rendered at server. Jade stuff.
 app.get('/views/partials/:name', function (req, res){
   var name = req.params.name;
   res.render('views/partials/' + name);
@@ -73,6 +73,7 @@ app.get('/views/partials/user/:name', function (req, res){
   res.render('views/partials/user/' + name);
 });
 
+*/
 
 //===================================================================
 // ERROR HANDLERS

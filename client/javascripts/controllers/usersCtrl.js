@@ -23,9 +23,6 @@ angular.module('beerBook').controller('RegisterCtrl', ['$scope', '$location', 'a
 
 angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'authenticationService',
   function($scope, $location, authenticationService){
-    
-    $scope.logged = authenticationService.currentUser().username;
-    console.log($scope.logged);
 
     $scope.login = function(){
       
