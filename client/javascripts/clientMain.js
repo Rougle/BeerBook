@@ -3,43 +3,43 @@ var app = angular.module('beerBook', ['ngResource', 'ngRoute', 'ngFileUpload']);
 app.config(['$routeProvider', function($routeProvider){
   $routeProvider
     .when('/', {
-      templateUrl: 'views/partials/home.html',
-      controller: 'HomeCtrl'
+      templateUrl: 'javascripts/user/user-list.html',
+      controller: 'ListUsersCtrl'
     })
     .when('/user/register', {
-      templateUrl: 'views/partials/user/user-form.html',
+      templateUrl: 'javascripts/user/user-form.html',
       controller: 'RegisterCtrl'
     })
     .when('/user/edit/:id', {
-      templateUrl: 'views/partials/user/user-form.html',
+      templateUrl: 'javascripts/user/user-form.html',
       controller: 'EditUserCtrl'
     })
     .when('/user/delete/:id', {
-      templateUrl: 'views/partials/user/user-delete.html',
+      templateUrl: 'javascripts/user/user-delete.html',
       controller: 'DeleteUserCtrl'
     })
     .when('/user/login', {
-      templateUrl: 'views/partials/user/user-login.html',
+      templateUrl: 'javascripts/user/user-login.html',
       controller: 'LoginCtrl'
     })
     .when('/beers', {
-      templateUrl: 'views/partials/beer/beers.html',
+      templateUrl: 'javascripts/beer/beers.html',
       controller: 'ViewBeersCtrl'
     })
     .when('/beers/add', {
-      templateUrl: 'views/partials/beer/beer-form.html',
+      templateUrl: 'javascripts/beer/beer-form.html',
       controller: 'AddBeerCtrl'
     })
     .when('/beers/edit/:id', {
-      templateUrl: 'views/partials/beer/beer-form.html',
+      templateUrl: 'javascripts/beer/beer-form.html',
       controller: 'EditBeerCtrl'
     })
     .when('/beers/delete/:id', {
-      templateUrl: 'views/partials/beer/beer-delete.html',
+      templateUrl: 'javascripts/beer/beer-delete.html',
       controller: 'DeleteBeerCtrl'
     })
     .when('/beers/:id', {
-      templateUrl: 'views/partials/beer/beer-info.html',
+      templateUrl: 'javascripts/beer/beer-info.html',
       controller: 'ViewBeerCtrl'
     })    
     .otherwise({

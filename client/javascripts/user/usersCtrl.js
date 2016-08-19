@@ -1,4 +1,4 @@
-angular.module('beerBook').controller('HomeCtrl', ['$scope', '$resource', 
+angular.module('beerBook').controller('ListUsersCtrl', ['$scope', '$resource', 
   function($scope, $resource){
     var Users = $resource('/api/users');
     Users.query(function(users){
