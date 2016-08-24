@@ -11,8 +11,8 @@
         <li ng-hide="!vm.isLoggedIn"><a ng-click="vm.logout()" href="#/beers">{{'NAVIGATION.LOGOUT' | translate}}</a></li>
         <li ng-hide="vm.isLoggedIn"><a href="#/user/login/">{{'NAVIGATION.LOGIN' | translate}}</a></li>
         <li ng-hide="vm.isLoggedIn"><a href="#/user/register/">{{'NAVIGATION.REGISTER' | translate}}</a></li>
-        <li><a ng-click="vm.setLang('en')">English</a></li>
-        <li><a ng-click="vm.setLang('fi')">Finnish</a></li>
+        <li ng-hide="vm.currentLangIsEn"><a ng-click="vm.setLang('en')">English</a></li>
+        <li ng-hide="!vm.currentLangIsEn"><a ng-click="vm.setLang('fi')">Finnish</a></li>
       </ul>
     </div>
   </div>
