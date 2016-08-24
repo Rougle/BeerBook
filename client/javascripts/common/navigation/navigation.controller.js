@@ -10,7 +10,9 @@
     var vm = this;
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentUser = authentication.currentUser();
+    vm.userIsAdmin = authentication.currentUserIsAdmin();
 
+    
     if($translate.proposedLanguage() == "en"){
       vm.currentLangIsEn = true;
     }

@@ -48,6 +48,7 @@ userSchema.methods.generateJwt = function() {
     _id: this._id,
     email: this.email,
     username: this.username,
+    role: this.role,
     exp: parseInt(expiry.getTime() / 1000),
   }, "MY_SECRET"); //SET THIS AS AN ENVIRONMENT VARIABLE LATER
 };
