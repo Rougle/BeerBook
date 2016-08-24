@@ -1,16 +1,20 @@
-angular.module('beerBook').controller('ListUsersCtrl', ['$scope', '$resource', 
-  function($scope, $resource){
-    var Users = $resource('/api/users');
-    Users.query(function(users){
-      $scope.users = users;
-    })
+angular.module('beerBook').controller('ListUsersCtrl', ['$scope', '$resource', 'meanData',
+  function($scope, $resource, meanData){
+    
+    meanData.getUsers()
+      .success(function(data){
+        $scope.users = data;
+      })
+      .error(function(e){
+        console.log(e);
+      });
 }]);
 
-angular.module('beerBook').controller('RegisterCtrl', ['$scope', '$location', 'authenticationService',
-  function($scope, $location, authenticationService){
+angular.module('beerBook').controller('RegisterCtrl', ['$scope', '$location', 'authentication',
+  function($scope, $location, authentication){
     $scope.save = function(){
 
-      authenticationService
+      authentication
         .register($scope.user)
         .error(function(err){
           alert(err);
@@ -21,12 +25,12 @@ angular.module('beerBook').controller('RegisterCtrl', ['$scope', '$location', 'a
     }
 }]);
 
-angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'authenticationService',
-  function($scope, $location, authenticationService){
+angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'authentication',
+  function($scope, $location, authentication){
 
     $scope.login = function(){
       
-      authenticationService
+      authentication
         .login($scope.user)
         .error(function(err){
           alert(err);

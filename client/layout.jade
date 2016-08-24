@@ -7,19 +7,21 @@ html(ng-app='beerBook')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-resource.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.js')
-    script(src='/javascripts/clientMain.js')
-    script(src='/javascripts/user/usersCtrl.js')
-    script(src='/javascripts/beer/beersCtrl.js')
-    script(src='/javascripts/comment/commentsCtrl.js')
-    script(src='/javascripts/authenticationService.js')
+    script(src='/javascripts/main.js')
+    script(src='/javascripts/user/user.controller.js')
+    script(src='/javascripts/beer/beer.controller.js')
+    script(src='/javascripts/comment/comment.controller.js')
+    script(src='/javascripts/common/services/authentication.service.js')
+    script(src='/javascripts/common/services/data.service.js')
     script(src='/javascripts/common/navigation/navigation.directive.js')
     script(src='/javascripts/common/navigation/navigation.controller.js')
-    script(src='/static/ng-file-upload.min.js')
+    script(src='/ng-file-upload/ng-file-upload.min.js')
+    script(src='/angular-translate/angular-translate.js')
+    script(src='/angular-translate-loader/angular-translate-loader-static-files.min.js')
+    script(src='/angular-translate-url-loader/angular-translate-loader-url.min.js')
   
 
   body
-
-    navigation
 
     .container
       block content

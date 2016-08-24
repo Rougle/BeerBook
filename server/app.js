@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
+var helmet = require('helmet');
 
 // Routes
 var routesApi = require('./routes/api');
@@ -24,7 +25,15 @@ require('./config/passport');
 
 var app = express();
 
-// All Environments //
+// Some basic security with helmet. One should include contentSecurityPolicy when domain has been acquired.
+var ninetyDaysInMilliseconds = 7776000000;
+
+app.use(helmet({
+  hidePoweredBy: false,
+  frameguard: {action: 'deny'},
+  hsts: {maxAge: ninetyDaysInMilliseconds},
+
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, '../client'));
@@ -39,8 +48,12 @@ app.use(cookieParser());
 
 //Static routes
 app.use(express.static(path.join(__dirname, '../client')));
-app.use('/static', express.static((path.join(__dirname, '../node_modules/ng-file-upload/dist'))));
+app.use('/ng-file-upload', express.static((path.join(__dirname, '../node_modules/ng-file-upload/dist'))));
+app.use('/angular-translate', express.static((path.join(__dirname, '../node_modules/angular-translate/dist'))));
+app.use('/angular-translate-loader', express.static((path.join(__dirname, '../node_modules/angular-translate/dist/angular-translate-loader-static-files'))));
+app.use('/angular-translate-url-loader', express.static((path.join(__dirname, '../node_modules/angular-translate/dist/angular-translate-loader-url'))));
 app.use('/resources', express.static((path.join(__dirname, '../client/resources'))));
+app.use('/locales', express.static((path.join(__dirname, '../client/resources/locales'))));
 
 // Session
 app.use(session({
@@ -57,23 +70,6 @@ app.use(passport.session());
 app.use('/api', routesApi);
 app.use('/', routesIndex);
 
-/* Angular partials are rendered at server. Jade stuff.
-app.get('/views/partials/:name', function (req, res){
-  var name = req.params.name;
-  res.render('views/partials/' + name);
-});
-
-app.get('/views/partials/beer/:name', function (req, res){
-  var name = req.params.name;
-  res.render('views/partials/beer/' + name);
-});
-
-app.get('/views/partials/user/:name', function (req, res){
-  var name = req.params.name;
-  res.render('views/partials/user/' + name);
-});
-
-*/
 
 //===================================================================
 // ERROR HANDLERS

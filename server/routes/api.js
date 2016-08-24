@@ -23,7 +23,7 @@ router.put('/beers/:id', ctrlBeers.editBeer);
 router.delete('/beers/:id', ctrlBeers.deleteBeer);
 
 // User routes and controllers
-router.get('/users', ctrlUsers.getUsers);
+router.get('/users', auth, ctrlUsers.getUsers);
 router.get('/users/:id', ctrlUsers.getUser);
 router.post('/users', ctrlUsers.registerUser);
 router.put('/users/:id', ctrlUsers.editUser);

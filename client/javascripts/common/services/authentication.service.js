@@ -1,4 +1,4 @@
-angular.module('beerBook').factory('authenticationService',
+angular.module('beerBook').factory('authentication',
   ['$http', '$window',
   function ($http, $window) {
     
@@ -38,10 +38,22 @@ angular.module('beerBook').factory('authenticationService',
         payload = JSON.parse(payload);
         return {
           email : payload.email,
-          username : payload.username
+          username : payload.username,
         };
       }
       return null;
+    };
+
+    var currentUserIsAdmin = function() {
+      if(isLoggedIn()){
+        var token = getToken();
+        var payload = token.split('.')[1];
+        payload = $window.atob(payload);
+        payload = JSON.parse(payload);
+        if(payload.username === 'admin')
+          return true;
+      }
+      return false;
     };
 
     register = function(user) {
@@ -62,6 +74,7 @@ angular.module('beerBook').factory('authenticationService',
       logout : logout,
       isLoggedIn : isLoggedIn,
       currentUser : currentUser,
+      currentUserIsAdmin : currentUserIsAdmin,
       register : register,
       login : login
     };

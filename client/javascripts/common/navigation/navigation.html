@@ -7,10 +7,13 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="#/">Home</a>
+          <li><a href="#/users">Users</a></li>
           <li><a href="#/beers">Beers</a></li>
           <li ng-hide="!vm.isLoggedIn"><a ng-click="vm.logout()" href="#/">Logout</a></li>
           <li ng-hide="vm.isLoggedIn"><a href="#/user/login/">Login</a></li>
           <li ng-hide="vm.isLoggedIn"><a href="#/user/register/">Register</a></li>
+          <li><a ng-click="vm.setLang('en')">English</a></li>
+          <li><a ng-click="vm.setLang('fi')">Finnish</a></li>
         </li>
       </ul>
     </div>

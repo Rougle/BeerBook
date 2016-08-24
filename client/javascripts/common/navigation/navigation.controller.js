@@ -4,19 +4,25 @@
     .module('beerBook')
     .controller('navigationCtrl', navigationCtrl);
 
-  navigationCtrl.$inject = ['$location', '$scope', 'authenticationService'];
-  function navigationCtrl($location, $scope, authenticationService) {
+  navigationCtrl.$inject = ['$location', '$scope', '$translate', 'authentication'];
+  function navigationCtrl($location, $scope, $translate, authentication) {
+    
     var vm = this;
-
-    vm.isLoggedIn = authenticationService.isLoggedIn();
-
-    vm.currentUser = authenticationService.currentUser();
-
-    vm.isNotLoggedIn = !authenticationService.isLoggedIn();
-
+    vm.isLoggedIn = authentication.isLoggedIn();
+    vm.currentUser = authentication.currentUser();
+    vm.isNotLoggedIn = !authentication.isLoggedIn();
+    vm.currentLang = $translate.proposedLanguage();
+    
+    // User logs out
     vm.logout = function(){
-      authenticationService.logout();
-    }
-  }
+      authentication.logout();
+    };
 
+    // Sets new lang
+    vm.setLang = function(langKey){
+      $translate.use(langKey)
+    };
+
+
+  }
 })();
