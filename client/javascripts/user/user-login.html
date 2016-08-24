@@ -1,16 +1,16 @@
 
 <navigation></navigation>
 
-<h1>Login user</h1>
+<h1>{{'USER_LOGIN.HEADLINE' | translate}}</h1>
 <div class="alert alert-danger" ng-show="error">{{errorMessage}}</div>
 <form>
   <div class="form-group">
-    <label>Username</label>
+    <label>{{'USER_LOGIN.USERNAME '| translate}}</label>
     <input class="form-control" ng-model="user.username"/>
   </div>
   <div class="form-group">
-    <label>Password</label>
+    <label>{{'USER_LOGIN.PASSWORD' | translate}}</label>
     <textarea class="form-control" ng-model="user.password"></textarea>
-    <input class="btn btn-primary" type="button" value="Login" ng-click="login()"/>
+    <input class="btn btn-primary" type="button" value="{{'USER_LOGIN.LOGIN_BUTTON' | translate}}" ng-click="login()"/>
   </div>
 </form>

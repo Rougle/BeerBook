@@ -1,23 +1,23 @@
 
 <navigation></navigation>
 
-<h1>Add user</h1>
+<h1>{{'USER_ADD.HEADLINE' | translate}}</h1>
 <form>
   <div class="form-group">
-    <label>Username</label>
+    <label>{{'USER_ADD.USERNAME' | translate}}</label>
     <input class="form-control" ng-model="user.username"/>
   </div>
   <div class="form-group">
-    <label>Password</label>
+    <label>{{'USER_ADD.PASSWORD' | translate}}</label>
     <textarea class="form-control" ng-model="user.password"></textarea>
   </div>
   <div class="form-group">
-    <label>Email</label>
+    <label>{{'USER_ADD.EMAIL' | translate}}</label>
     <textarea class="form-control" ng-model="user.email"></textarea>
   </div>
   <div class="form-group">
-    <label>Role</label>
+    <label>{{'USER_ADD.ROLE' | translate}}</label>
     <textarea class="form-control" ng-model="user.role"></textarea>
   </div>
-  <input class="btn btn-primary" type="button" value="Save" ng-click="save()"/>
+  <input class="btn btn-primary" type="button" value="{{'USER_ADD.SAVE_BUTTON' | translate}}" ng-click="save()"/>
 </form>

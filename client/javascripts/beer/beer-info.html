@@ -4,23 +4,23 @@
 <h1 ng-bind="beer.name"></h1>
 <div class="col-sm-3"><img class="img-responsive" style="max-height:400px" ng-src="{{beer.imagePath}}"/></div>
 <div class="col-sm-4">
-  <h4>Style: </h4>
+  <h4>{{'BEER_PAGE.STYLE' | translate}}</h4>
   <p ng-bind="beer.type"></p>
-  <h4>Description:</h4>
+  <h4>{{'BEER_PAGE.DESCRIPTION_HEADLINE' | translate}}</h4>
   <p ng-bind="beer.description"></p>
 </div>
 <div class="col-sm-7">
-  <h4>Comments</h4>
+  <h4>{{'BEER_PAGE.COMMENTS_HEADLINE' | translate}}</h4>
   <form class="form-horizontah" name="commentForm" ng-controller="AddCommentCtrl" ng-hide="!isLoggedIn">
     <div class="form-group">
-      <label class="control-label">Comment</label>
+      <label class="control-label">{{'BEER_PAGE.COMMENT_FIELD_HEADLINE' | translate}}</label>
       <input class="form-control" ng-model="comment.content" ng-required="true"/>
     </div>
     <div class="form-group">
-      <label class="control-label">Rating</label>
+      <label class="control-label">{{'BEER_PAGE.RATING_FIELD_HEADLINE' | translate}}</label>
       <select class="form-control" ng-model="comment.rating" ng-options="star for star in stars" ng-required="true"></select>
     </div>
-    <input class="btn btn-primary" type="button" ng-disabled="commentForm.$invalid" value="Post" ng-click="save()"/>
+    <input class="btn btn-primary" type="button" ng-disabled="commentForm.$invalid" value="{{'BEER_PAGE.POST_COMMENT_BUTTON' | translate}}" ng-click="save()"/>
   </form>
   <ul class="list-group" ng-controller="GetBeerCommentsCtrl">
     <li class="list-group-item" ng-repeat="comment in comments">

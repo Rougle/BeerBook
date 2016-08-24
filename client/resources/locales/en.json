@@ -1,5 +1,57 @@
 {
+  "NAVIGATION": {
+    "USERS": "Users",
+    "BEERS": "Beers",
+    "LOGIN": "Login",
+    "LOGOUT": "Logout",
+    "REGISTER": "Register"
+  },
   "USERS": {
-    "HEADLINE": "Users"
+    "HEADLINE": "Users",
+    "ADD": "Add user",
+    "DELETE": "Delete"
+  },
+  "USER_ADD": {
+    "HEADLINE": "Add User",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "EMAIL": "Email",
+    "ROLE": "Role",
+    "SAVE_BUTTON": "Save"
+  },
+  "USER_DELETE": {
+    "HEADLINE": "Delete user?",
+    "USERNAME": "Username",
+    "ROLE": "Role",
+    "DELETE_BUTTON": "Delete"
+  },
+  "USER_LOGIN": {
+    "HEADLINE": "Login",
+    "USERNAME": "Username",
+    "PASSWORD": "Password",
+    "LOGIN_BUTTON": "Login"
+  },
+  "BEERS": {
+    "HEADLINE": "Beers",
+    "ADD": "Add beer",
+    "DELETE": "Delete",
+    "EDIT": "Edit"
+  },
+  "BEER_PAGE": {
+    "STYLE": "Style",
+    "DESCRIPTION_HEADLINE": "Description",
+    "COMMENTS_HEADLINE": "Comments",
+    "POST_COMMENT_BUTTON": "Post",
+    "COMMENT_FIELD_HEADLINE": "New comment",
+    "RATING_FIELD_HEADLINE": "Rating"
+  },
+  "BEER_ADD": {
+    "HEADLINE": "Add Beer",
+    "NAME_FIELD": "Name",
+    "STYLE_FIELD": "Type",
+    "DESCRIPTION_FIELD": "Description",
+    "UPLOAD_IMAGE_HEADLINE": "Upload image",
+    "SELECT_FILE_BUTTON": "Select file",
+    "SAVE_BUTTON": "Save"
   }
 }

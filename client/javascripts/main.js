@@ -48,17 +48,6 @@
       .otherwise({
         redirectTo: '/'
       });
-/*
-    $translateProvider.translations('en', {
-      'HEADLINE': 'Users'
-    });
-   
-    $translateProvider.translations('fi', {
-      'HEADLINE': 'Käyttäjät'
-    });
-   
-    $translateProvider.preferredLanguage('fi');
-*/
 
     $translateProvider.useStaticFilesLoader({
       prefix: '/locales/',
@@ -66,6 +55,8 @@
     });
 
     $translateProvider.preferredLanguage('en');
+    $translateProvider.fallbackLanguage('fi');
+    $translateProvider.useSanitizeValueStrategy('escape');
   }
 
 
@@ -73,7 +64,7 @@
   function run ($rootScope, $location, authentication) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
       if ($location.path() === '/beers/add' & !authentication.currentUserIsAdmin()){
-        $location.path('/');
+        $location.path('/beers');
       } 
     });
   }

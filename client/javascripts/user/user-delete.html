@@ -1,9 +1,10 @@
 
 <navigation></navigation>
 
-<h1>Delete user?</h1>
-<h4>Username</h4>
+<h1>{{'USER_DELETE.HEADLINE' | translate}}</h1>
+<br>
+<h4>{{'USER_DELETE.USERNAME' | translate}}</h4>
 <p ng-model="user.username">{{user.username}}</p>
-<h4>Role</h4>
+<h4>{{'USER_DELETE.ROLE' | translate}}</h4>
 <p ng-model="user.role">{{user.role}}</p>
-<input class="btn btn-primary" type="button" value="Delete" ng-click="delete()"/>
+<input class="btn btn-primary" type="button" value="{{'USER_DELETE.DELETE_BUTTON' | translate}}" ng-click="delete()"/>

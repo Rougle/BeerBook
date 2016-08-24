@@ -1,5 +1,57 @@
 {
+  "NAVIGATION": {
+    "USERS": "Käyttäjät",
+    "BEERS": "Oluet",
+    "LOGIN": "Kirjaudu",
+    "LOGOUT": "Kirjaudu ulos",
+    "REGISTER": "Rekisteröidy"
+  },
   "USERS": {
-    "HEADLINE": "Käyttäjät"
+    "HEADLINE": "Käyttäjät",
+    "ADD": "Lisää käyttäjä",
+    "DELETE": "Poista"
+  },
+  "USER_ADD": {
+    "HEADLINE": "Lisää käyttäjä",
+    "USERNAME": "Käyttäjänimi",
+    "PASSWORD": "Salasana",
+    "EMAIL": "Sähköposti",
+    "ROLE": "Rooli",
+    "SAVE_BUTTON": "Tallenna"
+  },  
+  "USER_DELETE": {
+    "HEADLINE": "Poistetaanko käyttäjä?",
+    "USERNAME": "Käyttäjänimi",
+    "ROLE": "Rooli",
+    "DELETE_BUTTON": "Poista"
+  },
+  "USER_LOGIN": {
+    "HEADLINE": "Kirjaudu sisään",
+    "USERNAME": "Käyttäjänimi",
+    "PASSWORD": "Salasana",
+    "LOGIN_BUTTON": "Kirjaudu"
+  },
+  "BEERS": {
+    "HEADLINE": "Oluet",
+    "ADD": "Lisää olut",
+    "DELETE": "Poista",
+    "EDIT": "Muokkaa"
+  },
+  "BEER_PAGE": {
+    "STYLE": "Tyyppi",
+    "DESCRIPTION_HEADLINE": "Kuvaus",
+    "COMMENTS_HEADLINE": "Kommentit",
+    "POST_COMMENT_BUTTON": "Lähetä",
+    "COMMENT_FIELD_HEADLINE": "Uusi kommentti",
+    "RATING_FIELD_HEADLINE": "Arvio"
+  },
+  "BEER_ADD": {
+    "HEADLINE": "Lisää olut",
+    "NAME_FIELD": "Nimi",
+    "STYLE_FIELD": "Tyyppi",
+    "DESCRIPTION_FIELD": "Kuvaus",
+    "UPLOAD_IMAGE_HEADLINE": "Lataa kuva",
+    "SELECT_FILE_BUTTON": "Valitse tiedosto",
+    "SAVE_BUTTON": "Tallenna"
   }
 }
