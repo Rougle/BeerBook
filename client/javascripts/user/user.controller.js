@@ -25,6 +25,18 @@ angular.module('beerBook').controller('RegisterCtrl', ['$scope', '$location', 'a
     }
 }]);
 
+angular.module('beerBook').controller('ProfileCtrl', ['$scope', '$location', 'authentication', 'meanData',
+  function($scope, $location, authentication, meanData){
+    
+    meanData.getProfile()
+      .success(function(data) {
+        $scope.user = data;
+      })
+      .error(function (e) {
+        console.log(e);
+      });
+}]);
+
 angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'authentication',
   function($scope, $location, authentication){
 
@@ -40,8 +52,6 @@ angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'auth
         })
     }
 }]);
-
-
 
 angular.module('beerBook').controller('EditUserCtrl', ['$scope', '$resource', '$location', '$routeParams',
   function($scope, $resource, $location, $routeParams){

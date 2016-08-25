@@ -52,6 +52,7 @@ app.use('/ng-file-upload', express.static((path.join(__dirname, '../node_modules
 app.use('/angular-translate', express.static((path.join(__dirname, '../node_modules/angular-translate/dist'))));
 app.use('/angular-translate-loader', express.static((path.join(__dirname, '../node_modules/angular-translate/dist/angular-translate-loader-static-files'))));
 app.use('/angular-translate-url-loader', express.static((path.join(__dirname, '../node_modules/angular-translate/dist/angular-translate-loader-url'))));
+app.use('/angular-animate', express.static((path.join(__dirname, '../node_modules/angular-animate/'))));
 app.use('/resources', express.static((path.join(__dirname, '../client/resources'))));
 app.use('/locales', express.static((path.join(__dirname, '../client/resources/locales'))));
 

@@ -31,6 +31,9 @@
     "PASSWORD": "Salasana",
     "LOGIN_BUTTON": "Kirjaudu"
   },
+  "USER_PROFILE": {
+    "HEADLINE": "Profiilisi"
+  },
   "BEERS": {
     "HEADLINE": "Oluet",
     "ADD": "Lisää olut",

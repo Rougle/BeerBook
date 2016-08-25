@@ -1,19 +1,36 @@
 
-<div class="navbar navbar-inverse navbar-static-top" role="navigation">
-  <div class="container">
+<nav class="navbar navbar-inverse">
+  <div class="container-fuild">
     <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="#/">BeerBook</a>
+      <a class="navbar-brand" href="#/">BeerBook</a>
     </div>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li ng-hide="!vm.userIsAdmin"><a href="#/users">{{'NAVIGATION.USERS' | translate}}</a></li>
-        <li><a href="#/beers">{{'NAVIGATION.BEERS' | translate}}</a></li>
-        <li ng-hide="!vm.isLoggedIn"><a ng-click="vm.logout()" href="#/beers">{{'NAVIGATION.LOGOUT' | translate}}</a></li>
-        <li ng-hide="vm.isLoggedIn"><a href="#/user/login/">{{'NAVIGATION.LOGIN' | translate}}</a></li>
-        <li ng-hide="vm.isLoggedIn"><a href="#/user/register/">{{'NAVIGATION.REGISTER' | translate}}</a></li>
-        <li ng-hide="vm.currentLangIsEn"><a ng-click="vm.setLang('en')">English</a></li>
-        <li ng-hide="!vm.currentLangIsEn"><a ng-click="vm.setLang('fi')">Finnish</a></li>
-      </ul>
-    </div>
+    <ul class="nav navbar-nav">
+      <li ng-hide="!vm.userIsAdmin">
+        <a href="#/users">{{'NAVIGATION.USERS' | translate}}</a>
+      </li>
+      <li>
+        <a href="#/beers">{{'NAVIGATION.BEERS' | translate}}</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav pull-right">
+      <li ng-hide="!vm.isLoggedIn">
+        <a href="#/user/profile">{{vm.username}}</a>
+      </li>
+      <li ng-hide="!vm.isLoggedIn">
+        <a ng-click="vm.logout()" href="#/beers">{{'NAVIGATION.LOGOUT' | translate}}</a>
+      </li>
+      <li ng-hide="vm.isLoggedIn">n>
+        <a href="#/user/login/">{{'NAVIGATION.LOGIN' | translate}}</a>
+      </li>
+      <li ng-hide="vm.isLoggedIn">
+        <a href="#/user/register/">{{'NAVIGATION.REGISTER' | translate}}</a>
+      </li>
+      <li ng-hide="vm.currentLangIsEn">
+        <a ng-click="vm.setLang('en')">In English</a>
+      </li>
+      <li ng-hide="!vm.currentLangIsEn">
+        <a ng-click="vm.setLang('fi')">In Finnish</a>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>

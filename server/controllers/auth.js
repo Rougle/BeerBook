@@ -8,7 +8,6 @@ module.exports.register = function(req, res) {
   user.username = req.body.username;
   user.email = req.body.email;
   user.password = req.body.password;
-  user.role = req.body.role;
 
   user.setPassword(req.body.password);
 

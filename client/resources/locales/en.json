@@ -31,6 +31,9 @@
     "PASSWORD": "Password",
     "LOGIN_BUTTON": "Login"
   },
+  "USER_PROFILE": {
+    "HEADLINE": "Your profile"
+  },
   "BEERS": {
     "HEADLINE": "Beers",
     "ADD": "Add beer",

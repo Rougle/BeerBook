@@ -25,7 +25,7 @@ router.delete('/beers/:id', ctrlBeers.deleteBeer);
 // User routes and controllers
 router.get('/users', auth, ctrlUsers.getUsers);
 router.get('/users/:id', ctrlUsers.getUser);
-router.post('/users', ctrlUsers.registerUser);
+router.get('/profile', auth, ctrlUsers.getProfile);
 router.put('/users/:id', ctrlUsers.editUser);
 router.delete('/users/:id', ctrlUsers.deleteUser);
 

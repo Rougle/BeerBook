@@ -7,6 +7,7 @@
   meanData.$inject = ['$http', 'authentication'];
   function meanData ($http, authentication) {
 
+    //Get userlist
     var getUsers = function () {
       return $http.get('/api/users', {
         headers: {
@@ -15,9 +16,21 @@
       });
     };
 
+    //Get users profile
+    var getProfile = function () {
+      return $http.get('/api/profile', {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    };
+
     return {
-      getUsers : getUsers
+      getUsers : getUsers,
+      getProfile : getProfile
     };
   }
+
+  // TODO: PROTECT Beer -add, -delete, -edit and User -delete
 
 })();

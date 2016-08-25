@@ -11,22 +11,6 @@ module.exports.getUsers = function(req, res){
   });
 };
 
-// Add new user - MOVE TO AUTH
-module.exports.registerUser = function(req, res) {
-
-  var newUser = new User({
-    username: req.body.username,
-    password: req.body.password,
-    role: req.body.role
-  });
-
-  newUser.save(function(err, newUser){
-    if (err) throw err;
-    
-    res.json(newUser);
-  });
-};
-
 // Get user by id
 module.exports.getUser = function(req, res){
   User.findOne({ _id: req.params.id}, function(err, user){
@@ -34,6 +18,22 @@ module.exports.getUser = function(req, res){
 
     res.json(user);
   });
+};
+
+// Get user by id
+module.exports.getProfile = function(req, res){
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
+    });
+  } else {
+    User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
+        res.status(200).json(user);
+      });
+  }
 };
 
 // Edit user by id

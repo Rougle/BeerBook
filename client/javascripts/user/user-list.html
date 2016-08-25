@@ -3,5 +3,10 @@
 
 <h3>{{'USERS.HEADLINE' | translate}}</h3>
 <ul class="list-group">
-  <li class="list-group-item" ng-repeat="user in users"><a href="/#/user/edit/{{user._id}}">{{user.username}}</a><a class="pull-right" href="/#/user/delete/{{user._id}}">{{'USERS.DELETE' | translate}}</a></li>
-</ul><a href="/#/user/register">{{'USERS.ADD' | translate}}</a><br/><br/>
+  <li class="list-group-item" ng-repeat="user in users">
+    <a href="/#/user/edit/{{user._id}}">{{user.username}}</a>
+    <a class="pull-right" href="/#/user/delete/{{user._id}}">{{'USERS.DELETE' | translate}}</a>
+  </li>
+</ul>
+
+<a href="/#/user/register">{{'USERS.ADD' | translate}}</a><br/><br/>

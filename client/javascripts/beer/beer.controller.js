@@ -1,6 +1,9 @@
-angular.module('beerBook').controller('ViewBeersCtrl', ['$scope', '$resource', 
-  function($scope, $resource){
+angular.module('beerBook').controller('ViewBeersCtrl', ['$scope', '$resource', 'authentication',
+  function($scope, $resource, authentication){
     var Beers = $resource('/api/beers');
+    
+    $scope.userIsAdmin = authentication.currentUserIsAdmin();
+
     Beers.query(function(beers){
       $scope.beers = beers;
     })

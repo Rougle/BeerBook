@@ -6,6 +6,7 @@
     "start": "node server/server.js"
   },
   "dependencies": {
+    "angular-animate": "^1.5.8",
     "angular-translate": "^2.11.1",
     "angular-translate-loader-static-files": "^2.11.1",
     "bcrypt-nodejs": "0.0.3",

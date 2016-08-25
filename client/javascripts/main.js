@@ -6,16 +6,24 @@
   function config ($routeProvider, $locationProvider, $translateProvider){
     $routeProvider
       .when('/', {
-        templateUrl: 'javascripts/user/user-list.html',
-        controller: 'ListUsersCtrl'
+        templateUrl: 'javascripts/home/home.html',
+        controller: 'HomeCtrl'
       })
       .when('/user/register', {
-        templateUrl: 'javascripts/user/user-form.html',
+        templateUrl: 'javascripts/user/user-register.html',
         controller: 'RegisterCtrl'
+      })
+      .when('/users', {
+        templateUrl: 'javascripts/user/user-list.html',
+        controller: 'ListUsersCtrl'
       })
       .when('/user/edit/:id', {
         templateUrl: 'javascripts/user/user-form.html',
         controller: 'EditUserCtrl'
+      })
+      .when('/user/profile', {
+        templateUrl: 'javascripts/user/user-profile.html',
+        controller: 'ProfileCtrl'
       })
       .when('/user/delete/:id', {
         templateUrl: 'javascripts/user/user-delete.html',
@@ -63,7 +71,12 @@
   // Limit access of some routes
   function run ($rootScope, $location, authentication) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
-      if ($location.path() === '/beers/add' & !authentication.currentUserIsAdmin()){
+      //Routes reserved for admin only
+      if (($location.path() === '/beers/add' |
+          $location.path() === '/users/list' |
+          $location.path() === '/user/delete/:id' |  
+          $location.path() === '/beers/edit/:id' |  
+          $location.path() === '/beers/delete/:id') & !authentication.currentUserIsAdmin()){
         $location.path('/beers');
       } 
     });
