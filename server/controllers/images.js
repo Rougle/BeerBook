@@ -1,6 +1,7 @@
 
 var shortid = require('shortid');
 var path = require('path');
+var fs = require("fs");
 
 var mv = require('mv');
 
@@ -19,4 +20,28 @@ module.exports.saveImage = function(req, res){
 
   res.status(200).json({filename: filename}); //send filename so it cane be saved to db
 
+};
+
+//Deletes image
+module.exports.deleteImage = function(req, res){
+
+  var filename = req.query.imgName;
+  console.log(filename);
+
+  fs.unlink('./client/resources/images/beers/' + filename, function(err){
+    console.log("atUnlink");
+    if(err){
+      return res.send({
+        status:"200",
+        response: "failed to delete image"
+      })
+    }
+
+    res.send({
+      status: "200",
+      responseType: "string",
+      response: "image deleted"
+    });
+  
+  });
 };

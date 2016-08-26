@@ -11,8 +11,9 @@
     vm.isLoggedIn = authentication.isLoggedIn();
     vm.currentUser = authentication.currentUser();
     vm.userIsAdmin = authentication.currentUserIsAdmin();
-    vm.username = authentication.currentUser().username;
-
+    if(authentication.isLoggedIn()){
+      vm.username = authentication.currentUser().username;
+    }
     
     if($translate.proposedLanguage() == "en"){
       vm.currentLangIsEn = true;

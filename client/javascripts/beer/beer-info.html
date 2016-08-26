@@ -24,7 +24,10 @@
   </form>
   <ul class="list-group" ng-controller="GetBeerCommentsCtrl">
     <li class="list-group-item" ng-repeat="comment in comments">
-      <div>{{comment.content}} {{comment.rating}}</div>
+      <div>{{comment.content}}</div>
+      <div><b>-{{comment.user}}</b></div>
+      <div>Rating: {{comment.rating}}</div>
+      <button ng-hide="!userIsAdmin" ng-click="delete(comment._id)">{{'BEERS.DELETE' | translate}}</button>
     </li>
   </ul>
 </div>

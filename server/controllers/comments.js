@@ -38,3 +38,15 @@ module.exports.getBeerComments = function(req, res){
       res.json(comments);
     });
 };
+
+// Delete comment by id
+module.exports.deleteComment = function(req, res){
+  Comment.findById(req.params.id, function(err, comment){
+    if(err) throw err;
+
+    comment.remove(function(err, comment){
+      if (err) throw err;
+      res.json(comment);
+    });
+  });
+};

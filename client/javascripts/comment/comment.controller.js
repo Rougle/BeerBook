@@ -23,12 +23,22 @@ angular.module('beerBook').controller('AddCommentCtrl', ['$scope', '$resource', 
     }
 }]);
 
-angular.module('beerBook').controller('GetBeerCommentsCtrl', ['$scope', '$resource', '$routeParams',
-  function($scope, $resource, $routeParams){
+//Gets beer comments, ability to delete
+angular.module('beerBook').controller('GetBeerCommentsCtrl', ['$scope', '$resource', '$routeParams', 'authentication',
+  function($scope, $resource, $routeParams, authentication){
     var Comments = $resource('/api/comments/beer/:id');
+
+    $scope.userIsAdmin = authentication.currentUserIsAdmin();
 
     Comments.query({ id: $routeParams.id }, function(comments){
       $scope.comments = comments;
     });
 
+    $scope.delete = function(commentId){
+      Comments.delete( { id: commentId }, function(comment){
+        Comments.query({ id: $routeParams.id }, function(comments){
+          $scope.comments = comments;
+        });
+      });
+    }
 }]);

@@ -86,8 +86,16 @@ angular.module('beerBook').controller('DeleteBeerCtrl', ['$scope', '$resource', 
     });
 
     $scope.delete = function(){
+      var img_name = $scope.beer.img_name;
+      var Image = $resource('/api/images');
+
+      Image.delete({imgName:img_name}, function(res){
+
+      });
+
       Beers.delete( { id: $routeParams.id }, function(beer){
         $location.path('/beers');
       });
     }
+
 }]);

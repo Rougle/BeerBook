@@ -1,0 +1,19 @@
+
+<navigation></navigation>
+
+<h1>{{'BEER_ADD.HEADLINE' | translate}}</h1>
+<form class="form-horizontal" name="beerForm">
+  <div class="form-group">
+    <label class="control-label">{{'BEER_ADD.NAME_FIELD' | translate}}</label>
+    <input class="form-control" ng-model="beer.name" ng-required="true"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label">{{'BEER_ADD.STYLE_FIELD' | translate}}</label>
+    <textarea class="form-control" ng-model="beer.type" ng-required="true"></textarea>
+  </div>
+  <div class="form-group">
+    <label class="control-label">{{'BEER_ADD.DESCRIPTION_FIELD' | translate}}</label>
+    <textarea class="form-control" ng-model="beer.description" ng-required="true"></textarea>
+  </div>
+  <input class="btn btn-primary" type="button" ng-disabled="beerForm.$invalid || f.name == null" value="{{'BEER_ADD.SAVE_BUTTON' | translate}}" ng-click="save()"/>
+</form>

@@ -12,7 +12,6 @@ module.exports.getBeers = function(req, res){
 
 // Add beer
 module.exports.addBeer = function(req, res){
-  console.log(req.body.filename);
   var newBeer = new Beer({
     name: req.body.name,
     type: req.body.type,
