@@ -50,3 +50,17 @@ module.exports.deleteComment = function(req, res){
     });
   });
 };
+
+//delete comments related to beer
+module.exports.deleteBeerComments = function(req, res){
+  Comment.remove(
+  {'beerId': req.params.id},
+  function(err, comments) {
+    if(err) throw err;
+      res.send({
+        status: "200",
+        responseType: "string",
+        response: "comments deleted"
+      });
+    });
+}

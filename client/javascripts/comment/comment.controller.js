@@ -35,7 +35,8 @@ angular.module('beerBook').controller('GetBeerCommentsCtrl', ['$scope', '$resour
     });
 
     $scope.delete = function(commentId){
-      Comments.delete( { id: commentId }, function(comment){
+      var Comment = $resource('/api/comments/comment/:id');
+      Comment.delete( { id: commentId }, function(comment){
         Comments.query({ id: $routeParams.id }, function(comments){
           $scope.comments = comments;
         });

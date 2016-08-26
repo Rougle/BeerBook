@@ -33,7 +33,8 @@ router.delete('/users/:id', ctrlUsers.deleteUser);
 router.get('/comments', ctrlComments.getComments);
 router.post('/comments', ctrlComments.addComment);
 router.get('/comments/beer/:id', ctrlComments.getBeerComments);
-router.delete('/comments/beer/:id', ctrlComments.deleteComment);
+router.delete('/comments/comment/:id', ctrlComments.deleteComment);
+router.delete('/comments/beer/:id', ctrlComments.deleteBeerComments);
 
 // Image routes and controllers, note the middleware
 router.post('/images', multiparty(multipartyOptions), ctrlImages.saveImage);

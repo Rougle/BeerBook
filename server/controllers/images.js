@@ -26,10 +26,8 @@ module.exports.saveImage = function(req, res){
 module.exports.deleteImage = function(req, res){
 
   var filename = req.query.imgName;
-  console.log(filename);
 
   fs.unlink('./client/resources/images/beers/' + filename, function(err){
-    console.log("atUnlink");
     if(err){
       return res.send({
         status:"200",
