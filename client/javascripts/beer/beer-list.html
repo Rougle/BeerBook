@@ -1,13 +1,20 @@
 
 <navigation></navigation>
 
-<h3>{{'BEERS.HEADLINE' | translate}}</h3>
-<ul class="list-group">
-  <li class="list-group-item" ng-repeat="beer in beers">
-    <a href="/#/beers/{{beer._id}}">{{beer.name}}</a>
-    <span class="pull-right" ng-hide="!userIsAdmin">
-      <a href="/#/beers/delete/{{beer._id}}">{{'BEERS.DELETE' | translate}}</a>
-      <a href="/#/beers/edit/{{beer._id}}">{{'BEERS.EDIT' | translate}}</a>
-    </span>
-  </li>
-</ul><a ng-hide="!userIsAdmin" href="/#/beers/add">{{'BEERS.ADD' | translate}}</a>
+<div class="col-md-7">
+  <h3>{{'BEERS.HEADLINE' | translate}}</h3>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="beer in beers">
+      <a href="/#/beers/{{beer._id}}">{{beer.name}}</a>
+      <span class="pull-right" ng-hide="!userIsAdmin">
+        <a href="/#/beers/delete/{{beer._id}}">{{'BEERS.DELETE' | translate}}</a>
+        <a href="/#/beers/edit/{{beer._id}}">{{'BEERS.EDIT' | translate}}</a>
+      </span>
+    </li>
+  </ul><a ng-hide="!userIsAdmin" href="/#/beers/add">{{'BEERS.ADD' | translate}}</a>
+</div>
+
+<div class="col-md-4 pull-right">
+  <h3>Recent reddit discussion</h3>
+  <feed summary="true" count="5" url="https://www.reddit.com/r/beer/.rss"/>
+</div>

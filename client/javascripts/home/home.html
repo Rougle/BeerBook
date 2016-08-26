@@ -1,6 +1,35 @@
 
 <navigation></navigation>
 
-<h1>Welcome to BeerBook</h1>
+<div class="col-md-8">
 
-<p>This app is course work for www-programming @ uta. I'll add better description later.</p>
+  <simple-slider style="width:612px; height:312px" transition-property="opacity" start-value="0" visible-value="1" end-value="0" transition-delay="8" transition-duration="3" auto-play="true">
+    <div ng-repeat="image in images">
+      <img src="{{image.path}}"/>
+    </div>
+  </simple-slider>
+
+  <h1>Welcome to BeerBook</h1>
+
+  <p>
+    BeerBook is a beer rating app. As a visitor you are free to view beers, comments and ratings, while registered users are also able to rate and comment those beers. Right now only admins have right to add new beers to the service.
+  </p>
+
+  <p>
+    By selecting "Beers" from the top navigation, you can list all beers. By clicking one beer from the list, you'll be able to view the description and comments and ratings left by users. From the navigation bar at the top of the page you can register or login. If you are already logged in you can also view and edit your profile.
+  </p>
+  <p>
+    Authentication is done using passport.js and jwt tokens. Passwords are hashed using crypto. Additional security has been added with helmet. If the app is to be deployed, it would be smart to enable helmets content security policy. Also one should set secrets in app.js and user model to something else than "secret".
+  </p>
+  <p>
+    Admins are able to delete comments and CRUD beers and users. To make admin account you'll need to stab the profile into the database or POST it to server API. 
+  </p>
+  <h4>About</h4>
+  <p>
+    BeerBook was developed using MongoDB (and Mongoose), Express.js, AngularJS and Node.js. Also various plugins like ngFileUpload, angular-translate and angular-feeds. 
+  </p>
+</div>
+<div class="col-md-4 pull-right">
+  <h3>Recent reddit discussion</h3>
+  <feed summary="true" count="5" url="https://www.reddit.com/r/beer/.rss"/>
+</div>

@@ -53,6 +53,7 @@ app.use('/angular-translate', express.static((path.join(__dirname, '../node_modu
 app.use('/angular-translate-loader', express.static((path.join(__dirname, '../node_modules/angular-translate/dist/angular-translate-loader-static-files'))));
 app.use('/angular-translate-url-loader', express.static((path.join(__dirname, '../node_modules/angular-translate/dist/angular-translate-loader-url'))));
 app.use('/angular-animate', express.static((path.join(__dirname, '../node_modules/angular-animate/'))));
+app.use('/angular-slider', express.static((path.join(__dirname, '../node_modules/angular-simple-slider/dist/'))));
 app.use('/resources', express.static((path.join(__dirname, '../client/resources'))));
 app.use('/locales', express.static((path.join(__dirname, '../client/resources/locales'))));
 

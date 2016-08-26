@@ -1,6 +1,6 @@
 (function () {
 
-  angular.module('beerBook', ['ngRoute', 'ngResource', 'ngFileUpload', 'pascalprecht.translate']);
+  angular.module('beerBook', ['ngRoute', 'ngResource', 'ngFileUpload', 'pascalprecht.translate', 'feeds', 'angularSimpleSlider']);
 
   // Configure routes
   function config ($routeProvider, $locationProvider, $translateProvider){
@@ -42,7 +42,7 @@
         controller: 'AddBeerCtrl'
       })
       .when('/beers/edit/:id', {
-        templateUrl: 'javascripts/beer/beer-form.html',
+        templateUrl: 'javascripts/beer/beer-edit.html',
         controller: 'EditBeerCtrl'
       })
       .when('/beers/delete/:id', {

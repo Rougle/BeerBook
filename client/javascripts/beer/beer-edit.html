@@ -15,5 +15,5 @@
     <label class="control-label">{{'BEER_ADD.DESCRIPTION_FIELD' | translate}}</label>
     <textarea class="form-control" ng-model="beer.description" ng-required="true"></textarea>
   </div>
-  <input class="btn btn-primary" type="button" ng-disabled="beerForm.$invalid || f.name == null" value="{{'BEER_ADD.SAVE_BUTTON' | translate}}" ng-click="save()"/>
+  <input class="btn btn-primary" type="button" ng-disabled="beerForm.$invalid" value="{{'BEER_ADD.SAVE_BUTTON' | translate}}" ng-click="save()"/>
 </form>

@@ -17,7 +17,7 @@
   </div>
   <div class="form-group">
     <label class="control-label">{{'BEER_ADD.UPLOAD_IMAGE_HEADLINE' | translate}}</label>
-    <button type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-size="2MB">{{'BEER_ADD.SELECT_FILE_BUTTON' | translate}}</button>
+    <button type="file" ngf-select="uploadFiles($file, $invalidFiles)" accept="image/*" ngf-max-size="2MB" ngf-min-width="612" ngf-min-heigth="300" ngf-resize="{width: 612, height: 600}" centerCrop="true">{{'BEER_ADD.SELECT_FILE_BUTTON' | translate}}</button>
     <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}<span class="progress" ng-show="f.progress &gt;= 0">
         <div style="width:{{f.progress}}%" ng-bind="f.progress + '%'"></div></span></div>  {{errorMsg}}
   </div>
