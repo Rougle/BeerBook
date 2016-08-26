@@ -6,3 +6,14 @@ body {
 a {
   color: #00B7FF;
 }
+
+.top-border {
+  border-top-style: solid;
+  border-color: grey;
+  border-width: 2px;
+  margin-top: 20px;
+}
+
+.non-resizeable {
+  resize: none; /* user can resize vertically, but width is fixed */
+}
