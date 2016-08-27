@@ -40,12 +40,14 @@ angular.module('beerBook').controller('ProfileCtrl', ['$scope', '$location', 'au
 angular.module('beerBook').controller('LoginCtrl', ['$scope', '$location', 'authentication',
   function($scope, $location, authentication){
 
+    $scope.error;
+
     $scope.login = function(){
       
       authentication
         .login($scope.user)
         .error(function(err){
-          alert(err);
+          $scope.error = "Incorrect username or password.";
         })
         .then(function(){
           $location.path('/beers')

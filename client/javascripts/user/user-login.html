@@ -1,16 +1,23 @@
 
 <navigation></navigation>
-
-<h1>{{'USER_LOGIN.HEADLINE' | translate}}</h1>
-<div class="alert alert-danger" ng-show="error">{{errorMessage}}</div>
-<form>
-  <div class="form-group">
-    <label>{{'USER_LOGIN.USERNAME '| translate}}</label>
-    <input class="form-control" ng-model="user.username"/>
-  </div>
-  <div class="form-group">
-    <label>{{'USER_LOGIN.PASSWORD' | translate}}</label>
-    <textarea class="form-control" ng-model="user.password"></textarea>
+<div class="col-md-8">
+  <div class="alert alert-danger" ng-show="error">{{error}}</div>
+  <form class="form-horizontal">
+    <legend>{{'USER_LOGIN.HEADLINE' | translate}}</legend>
+    <div class="form-group">
+      <label class="col-sm-2">{{'USER_LOGIN.USERNAME '| translate}}</label>
+      <input class="form-control-static non-resizeable" ng-model="user.username"/>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2">{{'USER_LOGIN.PASSWORD' | translate}}</label>
+      <input class="form-control-static non-resizeable" ng-model="user.password"/>
+    </div>
+    <div class="col-sm-2"></div>
     <input class="btn btn-primary" type="button" value="{{'USER_LOGIN.LOGIN_BUTTON' | translate}}" ng-click="login()"/>
-  </div>
-</form>
+  </form>
+</div>
+
+<div class="col-md-4 pull-right">
+  <h3>Recent reddit discussion</h3>
+  <feed summary="true" count="5" url="https://www.reddit.com/r/beer/.rss"/>
+</div>

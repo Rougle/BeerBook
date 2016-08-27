@@ -31,6 +31,4 @@
     };
   }
 
-  // TODO: PROTECT Beer -add, -delete, -edit and User -delete
-
 })();
