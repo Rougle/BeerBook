@@ -6,6 +6,6 @@ By selecting "Beers" from the top navigation, you can list all beers. By clickin
 
 Authentication is done using passport.js and jwt tokens. Passwords are hashed using crypto. Additional security has been added with helmet. If the app is to be deployed, it would be smart to enable helmets content security policy. Also one should set secrets in app.js and user model to something else than "secret".
 
-Admins are able to delete comments and CRUD beers and users. To make admin account you'll need to stab the profile into the database or POST it to server API. 
+Admins are able to delete comments and CRUD beers and users.
 
 BeerBook was developed using MongoDB (and Mongoose), Express.js, AngularJS and Node.js. It also uses various plugins like ngFileUpload, angular-translate and angular-feeds. 
