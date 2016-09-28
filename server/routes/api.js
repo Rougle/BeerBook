@@ -21,7 +21,7 @@ var authorizeAdmin = function(req, res, next){
 };
 
 var authorizeUser = function(req, res, next){
-  if(req.payload.role == 'user'){
+  if(req.payload.role == 'user' | req.payload.role == 'admin'){
     next();
   }
   else{
@@ -47,8 +47,8 @@ router.delete('/beers/:id', ctrlBeers.deleteBeer);
 // User routes and controllers
 router.get('/users', [processjwt, authorizeAdmin], ctrlUsers.getUsers);
 router.get('/users/:id', ctrlUsers.getUser);
-router.get('/profile', authorizeUser, ctrlUsers.getProfile);
-router.put('/users/:id', ctrlUsers.editUser);
+router.get('/profile', [processjwt, authorizeUser], ctrlUsers.getProfile);
+router.put('/profile', [processjwt, authorizeUser], ctrlUsers.editProfile);
 router.delete('/users/:id', ctrlUsers.deleteUser);
 
 // Comment routes and controllers

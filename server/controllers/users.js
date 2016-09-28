@@ -37,20 +37,25 @@ module.exports.getProfile = function(req, res){
 };
 
 // Edit user by id
-module.exports.editUser = function(req, res){
-  User.findById(req.params.id, function(err, user){
-    if(err) throw err;
-    
-    user.username = req.body.username;
-    user.password = req.body.password;
-    user.role = req.body.role;
-    
-    user.save(function(err, user) {
-      if (err) throw err;
-      res.json(user);
+module.exports.editProfile = function(req, res){
+
+  if (!req.payload._id) {
+    res.status(401).json({
+      "message" : "UnauthorizedError: private profile"
     });
-  
-  });
+  } else {
+    User
+      .findById(req.payload._id)
+      .exec(function(err, user) {
+        user.username = req.body.username;
+        user.password = req.body.password;
+        user.email = req.body.email;
+        user.save(function(err, user) {
+          if (err) throw err;
+          res.json(user);
+        });
+      });
+  }
 };
 
 // Delete user by id

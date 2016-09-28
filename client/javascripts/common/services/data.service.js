@@ -25,10 +25,21 @@
       });
     };
 
+    //Update user profile
+    var updateProfile = function (user){
+      return $http.put('/api/profile', user, {
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken(),
+        }
+      });
+    };
+
     return {
       getUsers : getUsers,
-      getProfile : getProfile
+      getProfile : getProfile,
+      updateProfile : updateProfile
     };
   }
 
 })();
+
