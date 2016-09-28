@@ -8,4 +8,4 @@ Authentication is done using passport.js and jwt tokens. Passwords are hashed us
 
 Admins are able to delete comments and CRUD beers and users.
 
-BeerBook was developed using MongoDB (and Mongoose), Express.js, AngularJS and Node.js. It also uses various plugins like ngFileUpload, angular-translate and angular-feeds. 
+BeerBook was developed using MongoDB (and Mongoose), Express.js, AngularJS and Node.js. It also uses various plugins like ngFileUpload, angular-translate and angular-feeds. BeerBook api is mostly open, so one can almost completely empty it with postman.
