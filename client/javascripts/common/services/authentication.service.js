@@ -59,7 +59,8 @@ angular.module('beerBook').factory('authentication',
 
     register = function(user) {
       return $http.post('/api/register', user).success(function(data){
-        saveToken(data.token);
+        if(!isLoggedIn())
+          saveToken(data.token);
       });
     };
 

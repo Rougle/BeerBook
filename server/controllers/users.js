@@ -6,7 +6,7 @@ var passport = require('passport');
 module.exports.getUsers = function(req, res){
   User.find({}, function(err, users) {
     if (err) throw err;
-    
+    console.log("response sent");
     res.json(users);
   });
 };

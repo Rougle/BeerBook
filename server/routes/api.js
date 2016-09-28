@@ -4,10 +4,32 @@ var multiparty = require('connect-multiparty');
 var multipartyOptions = multiparty();
 
 var jwt = require('express-jwt');
-var auth = jwt({
+
+var processjwt = jwt({
   secret: 'MY_SECRET',
   userProperty: 'payload'
 });
+
+var authorizeAdmin = function(req, res, next){
+
+  if(req.payload.role == 'admin'){
+    next();
+  }
+  else{
+    return res.sendStatus(401);
+  }
+};
+
+var authorizeUser = function(req, res, next){
+  if(req.payload.role == 'user'){
+    next();
+  }
+  else{
+    return res.sendStatus(401);
+  }
+};
+
+
 
 var ctrlUsers = require('../controllers/users');
 var ctrlBeers = require('../controllers/beers');
@@ -23,9 +45,9 @@ router.put('/beers/:id', ctrlBeers.editBeer);
 router.delete('/beers/:id', ctrlBeers.deleteBeer);
 
 // User routes and controllers
-router.get('/users', auth, ctrlUsers.getUsers);
+router.get('/users', [processjwt, authorizeAdmin], ctrlUsers.getUsers);
 router.get('/users/:id', ctrlUsers.getUser);
-router.get('/profile', auth, ctrlUsers.getProfile);
+router.get('/profile', authorizeUser, ctrlUsers.getProfile);
 router.put('/users/:id', ctrlUsers.editUser);
 router.delete('/users/:id', ctrlUsers.deleteUser);
 
